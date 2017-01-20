@@ -1,0 +1,24 @@
+{
+  "name": "react-offcharts-kpis",
+  "version": "0.0.1",
+  "description": "a collection of kpi visualization components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnthor3/react-offchart-kpi.git"
+  },
+  "keywords": [
+    "react",
+    "d3",
+    "offcharts"
+  ],
+  "author": "arnthor3",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arnthor3/react-offchart-kpi/issues"
+  },
+  "homepage": "https://github.com/arnthor3/react-offchart-kpi#readme"
+}
