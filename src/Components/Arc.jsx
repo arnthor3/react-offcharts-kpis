@@ -37,6 +37,7 @@ export default class Arc extends Component {
   }
 
   render() {
+
     return (
       <g>
         <path
