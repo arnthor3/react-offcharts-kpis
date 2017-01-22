@@ -10,9 +10,15 @@ export default (props) => (
     width={props.width}
     height={props.height}
     responsive={props.responsive}
-    value={props.value}
+    value={props.values}
     gradientId={gradientId}
   >
-
+    <ArcsContainer>
+      {
+        props.values.map(d => (
+          <Arc {...d} />
+        ))
+      }
+    </ArcsContainer>
   </Chart>
 );
