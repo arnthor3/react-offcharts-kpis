@@ -23,7 +23,9 @@ const DoubleArcKpi = props => (
       backgroundBenchmark={props.backgroundBenchmark}
       backgroundValue={props.backgroundValue}
     >
-      <DoubleArcCenterText />
+      <DoubleArcCenterText
+        centerText={props.centerText}
+      />
       <DoubleArcLegend />
     </DoubleArcContainer>
   </Chart>

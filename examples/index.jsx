@@ -28,6 +28,11 @@ const L = () => (
       }}
       animationEase="easeCubicInOu"
       animationTime={2250}
+      centerText={{
+        fontSize: 0.6,
+        postfix: '%',
+      }}
+
     />
   </div>
 );
