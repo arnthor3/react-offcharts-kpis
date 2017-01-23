@@ -4,6 +4,8 @@ import ReactIf from 'react-offcharts-core/Components/ReactIf';
 import Gradients from 'react-offcharts-core/Components/Defs/Gradients';
 import guid from 'react-offcharts-core/Utils/guid';
 import DoubleArcContainer from './DoubleArcContainer';
+import DoubleArcCenterText from './DoubleArcCenterText';
+import DoubleArcLegend from './DoubleArcLegend';
 
 const DoubleArcKpi = props => (
   <Chart
@@ -18,7 +20,10 @@ const DoubleArcKpi = props => (
       benchmark={props.benchmark}
       startAngle={props.startAngle}
       endAngle={props.endAngle}
-    />
+    >
+      <DoubleArcCenterText />
+
+    </DoubleArcContainer>
   </Chart>
 );
 

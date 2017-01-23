@@ -74,7 +74,7 @@ export default class ArcContainer extends Component {
         />
         <path className={ch.FORECAST_PATH} />
         <path className={ch.VALUE_PATH} />
-
+        {clone(this.props)}
       </g>
     );
   }
