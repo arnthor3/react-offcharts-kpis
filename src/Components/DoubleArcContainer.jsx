@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { select } from 'd3-selection';
+import { interpolate } from 'd3-interpolate';
+import { scaleLinear } from 'd3-scale';
+import 'd3-transition';
 import { arc } from 'd3-shape';
+import * as ease from 'd3-ease';
 import clone from 'react-offcharts-core/Utils/cloneChildren';
 import * as dim from 'react-offcharts-core/Helpers/arcDimension';
 import * as ch from '../Utils/constants';
@@ -35,8 +39,48 @@ export default class ArcContainer extends Component {
     this.renderArc();
   }
 
+  animateIn() {
+    const els = select(this.container);
+  }
+
   animate() {
     const els = select(this.container);
+    const forecast = els.select(`.${ch.FORECAST_PATH}`);
+    els
+      .select('.offcharts-kpi-doublearc-valuepath')
+      .transition()
+      .duration(1500)
+      .ease(ease.easeSinInOut)
+      .attrTween('d', () => {
+        const valueScale = (
+          scaleLinear()
+            .domain([0, 100])
+            .range([this.props.startAngle, this.props.endAngle])
+        );
+        const interValue = interpolate(this.props.startAngle, valueScale(45));
+        const d = dim.dimensions(this.props);
+        const valueArc = (
+          arc()
+            .innerRadius(d.radius * this.props.value.outer)
+            .outerRadius(d.radius * this.props.value.inner)
+            .startAngle(this.props.startAngle)
+        );
+
+        const forecastArc = (
+          arc()
+            .innerRadius(d.radius * this.props.benchmark.outer)
+            .outerRadius(d.radius * this.props.benchmark.inner)
+            .startAngle(this.props.startAngle)
+        );
+
+        return (t) => {
+          forecast.attr('d', forecastArc.endAngle(interValue(t))() );
+          return valueArc.endAngle(interValue(t))();
+        };
+      })
+      .on('end', () => {
+        this.animateIn();
+      });
   }
 
   draw() {
@@ -56,7 +100,6 @@ export default class ArcContainer extends Component {
   }
 
   render() {
-    console.log(dim);
     const d = dim.dimensions(this.props);
     const benchArc = (
       arc()
@@ -75,7 +118,7 @@ export default class ArcContainer extends Component {
     );
     return (
       <g
-        ref={(c) => { this.conatiner = c; }}
+        ref={(c) => { this.container = c; }}
         transform={`translate(${d.cx},${d.cy})`}
       >
         <path

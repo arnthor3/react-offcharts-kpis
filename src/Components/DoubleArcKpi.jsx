@@ -16,6 +16,8 @@ const DoubleArcKpi = props => (
     className={props.className}
   >
     <DoubleArcContainer
+      animationTime={props.animationTime}
+      animationValue={props.animationValue}
       value={props.value}
       benchmark={props.benchmark}
       startAngle={props.startAngle}
@@ -24,7 +26,12 @@ const DoubleArcKpi = props => (
       backgroundValue={props.backgroundValue}
     >
       <DoubleArcCenterText
-        centerText={props.centerText}
+        topValueText={props.topValueText}
+        topPostfixText={props.topPostfixText}
+        bottomValueText={props.bottomPostfixText}
+        bottomPostfixText={props.bottomPostfixText}
+        bottomPostfix={props.bottomPostfix}
+        topPostfix={props.topPostfix}
       />
       <DoubleArcLegend />
     </DoubleArcContainer>

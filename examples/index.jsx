@@ -28,11 +28,22 @@ const L = () => (
       }}
       animationEase="easeCubicInOu"
       animationTime={2250}
-      centerText={{
+      topPostfix="$"
+      bottomPostfix="%"
+      topCenterValueText={{
         fontSize: 0.6,
         postfix: '%',
       }}
-
+      topCenterPostfixText={{
+        fontSize: 0.3,
+      }}
+      bottomCenterValueText={{
+        fontSize: 0.6,
+        postfix: '%',
+      }}
+      bottomCenterPostfixText={{
+        fontSize: 0.3,
+      }}
     />
   </div>
 );
