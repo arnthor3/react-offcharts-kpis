@@ -20,9 +20,11 @@ const DoubleArcKpi = props => (
       benchmark={props.benchmark}
       startAngle={props.startAngle}
       endAngle={props.endAngle}
+      backgroundBenchmark={props.backgroundBenchmark}
+      backgroundValue={props.backgroundValue}
     >
       <DoubleArcCenterText />
-
+      <DoubleArcLegend />
     </DoubleArcContainer>
   </Chart>
 );

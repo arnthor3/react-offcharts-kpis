@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Chart from '../src/index';
+import { DoubleArcKpi } from '../src/index';
 
 const L = () => (
   <div style={{ width: '400px', height: '400px' }}>
-    <Chart
+    <DoubleArcKpi
       responsive
       startAngle={-Math.PI / 2}
       endAngle={Math.PI / 1.33}

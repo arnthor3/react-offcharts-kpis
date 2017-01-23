@@ -2,12 +2,29 @@ import React, { Component, PropTypes } from 'react';
 import { select } from 'd3-selection';
 import { arc } from 'd3-shape';
 import clone from 'react-offcharts-core/Utils/cloneChildren';
-import * as dim from '../Utils/dimensions';
+import * as dim from 'react-offcharts-core/Helpers/arcDimension';
 import * as ch from '../Utils/constants';
 
-export default class ArcContainer extends Component {
-  componentDidMount() {
+const shape = PropTypes.shape({
+  fill: PropTypes.string,
+  stroke: PropTypes.string,
+  value: PropTypes.number,
+  outerRadius: PropTypes.number,
+  innerRadius: PropTypes.number,
+});
 
+export default class ArcContainer extends Component {
+  static propTypes = {
+    endAngle: PropTypes.number,
+    startAngle: PropTypes.number,
+    value: shape,
+    benchmark: shape,
+    animationEase: PropTypes.string,
+    animationTime: PropTypes.number,
+  }
+
+  componentDidMount() {
+    this.renderArc();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -15,7 +32,7 @@ export default class ArcContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-
+    this.renderArc();
   }
 
   animate() {
@@ -39,6 +56,7 @@ export default class ArcContainer extends Component {
   }
 
   render() {
+    console.log(dim);
     const d = dim.dimensions(this.props);
     const benchArc = (
       arc()
