@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 
-const DoubleArcLegend = () => (
-  <g>
+const DoubleArcLegend = props => (
+  <g transform={`translate(0, ${props.radius * 0.75})`}>
     <g>
-      <rect />
-      <text>SomeText</text>
+      <rect width={10} height={10} x={-props.radius * 0.3} />
+      <text textAnchor="middle">SomeText2345235</text>
     </g>
-    <g>
+    <g transform={`translate(0, ${props.radius * 0.1})`}>
       <rect />
-      <text>SomeText</text>
+      <text textAnchor="middle">SomeText</text>
     </g>
   </g>
 );
