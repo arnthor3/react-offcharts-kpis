@@ -32,6 +32,7 @@ const DoubleArcKpi = props => (
         bottomPostfixText={props.bottomPostfixText}
         bottomPostfix={props.bottomPostfix}
         topPostfix={props.topPostfix}
+        seperator={props.seperator}
       />
       <DoubleArcLegend />
     </DoubleArcContainer>

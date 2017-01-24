@@ -22,15 +22,15 @@ export default class DoubleArcLegend extends Component {
     return (
       <g transform={`translate(0, ${this.props.radius * 0.75})`}>
         <g ref={(c) => { this.top = c; }}>
-          <rect width={14} y={-12} height={14} x={-14} />
-          <text>SomeText2345235</text>
+          <rect width={12} y={-12} height={14} x={-16} />
+          <text fontSize={this.props.radius * 0.09}>{this.props.value.label}</text>
         </g>
         <g
           transform={`translate(0, ${this.props.radius * 0.1})`}
           ref={(c) => { this.bottom = c; }}
         >
-          <rect width={14} y={-12} height={14} x={-14}/>
-          <text>SomeText</text>
+          <rect width={12} y={-12} height={14} x={-16}/>
+          <text fontSize={this.props.radius * 0.09} >{this.props.benchmark.label}</text>
         </g>
       </g>
     );

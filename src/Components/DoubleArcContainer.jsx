@@ -54,10 +54,16 @@ export default class ArcContainer extends Component {
       .attrTween('d', () => {
         const valueScale = (
           scaleLinear()
-            .domain([0, 100])
+            .domain(this.props.value.domain || [0, 100])
             .range([this.props.startAngle, this.props.endAngle])
         );
-        const interValue = interpolate(this.props.startAngle, valueScale(45));
+        const benchScale = (
+          scaleLinear()
+            .domain(this.props.benchmark.domain || [0, 100])
+            .range([this.props.startAngle, this.props.endAngle])
+        );
+        const interValue = interpolate(this.props.startAngle, valueScale(this.props.value.value));
+        const interBench = interpolate(this.props.startAngle, benchScale(this.props.benchmark.value));
         const d = dim.dimensions(this.props);
         const valueArc = (
           arc()
@@ -74,7 +80,7 @@ export default class ArcContainer extends Component {
         );
 
         return (t) => {
-          forecast.attr('d', forecastArc.endAngle(interValue(t))() );
+          forecast.attr('d', forecastArc.endAngle(interBench(t))() );
           return valueArc.endAngle(interValue(t))();
         };
       })

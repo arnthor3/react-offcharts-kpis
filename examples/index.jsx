@@ -2,22 +2,30 @@ import React from 'react';
 import { render } from 'react-dom';
 import { DoubleArcKpi } from '../src/index';
 
+const doubleValue = {
+  value: 87,
+  range: [0, 100],
+  label: 'Revenue Per Hour',
+  outer: 0.9,
+  inner: 0.8,
+};
+
+const doubleBench = {
+  value: 47,
+  range: [0, 100],
+  label: 'Revenue Margin',
+  outer: 0.95,
+  inner: 0.93,
+};
+
 const L = () => (
   <div style={{ width: '400px', height: '400px' }}>
     <DoubleArcKpi
       responsive
       startAngle={-Math.PI / 2}
       endAngle={Math.PI / 1.33}
-      value={{
-        outer: 0.91,
-        inner: 0.8,
-        value: 45,
-      }}
-      benchmark={{
-        outer: 0.95,
-        inner: 0.93,
-        value: 34,
-      }}
+      value={doubleValue}
+      benchmark={doubleBench}
       backgroundBenchmark={{
         fill: 'rgb(200, 200, 200)',
         stroke: 'rgb(140, 140, 140)',
@@ -30,18 +38,16 @@ const L = () => (
       animationTime={2250}
       topPostfix="$"
       bottomPostfix="%"
-      topCenterValueText={{
+      topValueText={{
         fontSize: 0.6,
-        postfix: '%',
       }}
-      topCenterPostfixText={{
+      topPostfixText={{
         fontSize: 0.3,
       }}
-      bottomCenterValueText={{
+      bottomValueText={{
         fontSize: 0.6,
-        postfix: '%',
       }}
-      bottomCenterPostfixText={{
+      bottomPostfixText={{
         fontSize: 0.3,
       }}
     />

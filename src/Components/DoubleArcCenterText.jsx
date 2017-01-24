@@ -4,16 +4,21 @@ import * as ch from '../Utils/constants';
 
 
 const Tspan = ({ radius, tProps, text, className }) => {
-  console.log(radius, tProps, text);
-  const { fontSize, ...rest } = tProps;
+  const { fontSize, textAnchor } = tProps;
   const fs = fontSize * radius;
   return (
     <tspan
       className={className}
       fontSize={fs}
-      {...rest}
+      textAnchor="middle"
     >{text}</tspan>
   );
+};
+
+Tspan.defaultProps = {
+  tProps: {
+    textAnchor: 'middle',
+  },
 };
 
 Tspan.propTypes = {
@@ -51,16 +56,14 @@ const DoubleArcCenterText = props => {
         y1={10}
         y2={10}
         className={ch.DOUBLE_ARC_CENTER_TEXT_SEPERATOR}
-        stroke="red"
-        strokeWidth="5px"
-        strokeDasharray="5px"
+        {...props.seperator}
       />
       <text
         transform={`translate(0,${offset})`}
         className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM}
       >
         <Tspan
-          text={props.value.value}
+          text={props.benchmark.value}
           radius={props.radius}
           tProps={props.bottomValueText}
           className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}
@@ -89,19 +92,15 @@ DoubleArcCenterText.propTypes = {
 DoubleArcCenterText.defaultProps = {
   topValueText: {
     fontSize: 0.6,
-    textAnchor: 'middle',
   },
   topPostfixText: {
     fontSize: 0.3,
-    textAnchor: 'middle',
   },
   bottomValueText: {
     fontSize: 0.3,
-    textAnchor: 'middle',
   },
   bottomPostfixText: {
     fontSize: 0.15,
-    textAnchor: 'middle',
   },
 }
 
