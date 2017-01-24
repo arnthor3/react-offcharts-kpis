@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 
-const CenterText = props => (
-  <text>{props.text}</text>
-);
+const CenterText = props => {
+
+  return (
+    <text>{props.text}</text>
+  );
+};

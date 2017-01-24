@@ -1,21 +1,38 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
+import { select } from 'd3-selection';
 
-const DoubleArcLegend = props => (
-  <g transform={`translate(0, ${props.radius * 0.75})`}>
-    <g>
-      <rect width={10} height={10} x={-props.radius * 0.3} />
-      <text textAnchor="middle">SomeText2345235</text>
-    </g>
-    <g transform={`translate(0, ${props.radius * 0.1})`}>
-      <rect />
-      <text textAnchor="middle">SomeText</text>
-    </g>
-  </g>
-);
+export default class DoubleArcLegend extends Component {
 
-DoubleArcLegend.propTypes = {
+  componentDidMount() {
+    const top = this.top.getBoundingClientRect().width;
+    const bottom = this.bottom.getBoundingClientRect().width;
 
-};
+    const max = Math.max(top, bottom);
+    select(this.top).attr('transform', `translate(${max / -2},0)`);
+    select(this.bottom).attr('transform', `translate(${max / -2},20)`);
+    console.log(max);
+  }
 
-export default DoubleArcLegend;
+  componentDidUpdate(prevProps, prevState) {
 
+  }
+
+
+  render() {
+    return (
+      <g transform={`translate(0, ${this.props.radius * 0.75})`}>
+        <g ref={(c) => { this.top = c; }}>
+          <rect width={14} y={-12} height={14} x={-14} />
+          <text>SomeText2345235</text>
+        </g>
+        <g
+          transform={`translate(0, ${this.props.radius * 0.1})`}
+          ref={(c) => { this.bottom = c; }}
+        >
+          <rect width={14} y={-12} height={14} x={-14}/>
+          <text>SomeText</text>
+        </g>
+      </g>
+    );
+  }
+}
