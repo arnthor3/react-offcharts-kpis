@@ -38,6 +38,10 @@ const L = () => (
       animationTime={2250}
       topPostfix="$"
       bottomPostfix="%"
+      seperator={{
+        stroke: 'black',
+        strokeWidth: '4px',
+      }}
       topValueText={{
         fontSize: 0.6,
       }}

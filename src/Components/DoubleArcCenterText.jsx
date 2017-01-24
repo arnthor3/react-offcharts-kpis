@@ -29,14 +29,14 @@ Tspan.propTypes = {
 };
 
 
-const DoubleArcCenterText = props => {
+const DoubleArcCenterText = (props) => {
   const { fontSize } = props.topValueText;
 
   const fs = fontSize * props.radius;
   const offset = (props.bottomValueText.fontSize * props.radius) * 1.05;
   return (
-    <g className={ch.DOUBLE_ARC_CENTER_TEXT}>
-      <text className={ch.DOUBLE_ARC_CENTER_TEXT_TOP} >
+    <g className={ch.DOUBLE_ARC_CENTER_TEXT} style={{opacity: 1}}>
+      <text transform="scale(0)" className={ch.DOUBLE_ARC_CENTER_TEXT_TOP} >
         <Tspan
           className={ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}
           text={props.value.value}
@@ -58,23 +58,22 @@ const DoubleArcCenterText = props => {
         className={ch.DOUBLE_ARC_CENTER_TEXT_SEPERATOR}
         {...props.seperator}
       />
-      <text
-        transform={`translate(0,${offset})`}
-        className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM}
-      >
-        <Tspan
-          text={props.benchmark.value}
-          radius={props.radius}
-          tProps={props.bottomValueText}
-          className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}
-        />
-        <Tspan
-          text={props.bottomPostfix}
-          radius={props.radius}
-          tProps={props.bottomPostfixText}
-          className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_POSTFIX}
-        />
-      </text>
+      <g transform={`translate(0,${offset})`}>
+        <text transform="scale(0)" className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM}>
+          <Tspan
+            text={props.benchmark.value}
+            radius={props.radius}
+            tProps={props.bottomValueText}
+            className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}
+          />
+          <Tspan
+            text={props.bottomPostfix}
+            radius={props.radius}
+            tProps={props.bottomPostfixText}
+            className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_POSTFIX}
+          />
+        </text>
+      </g>
     </g>
   );
 };

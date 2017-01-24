@@ -41,6 +41,13 @@ export default class ArcContainer extends Component {
 
   animateIn() {
     const els = select(this.container);
+    const centerTextContainer = els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT}`);
+    centerTextContainer.selectAll('text')
+      .transition()
+      .duration(500)
+      .delay((d, i) => i * 65)
+      .ease(ease.easeCubicInOut)
+      .attr('transform', 'scale(1)');
   }
 
   animate() {
