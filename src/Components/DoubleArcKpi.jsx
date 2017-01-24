@@ -34,7 +34,9 @@ const DoubleArcKpi = props => (
         topPostfix={props.topPostfix}
         seperator={props.seperator}
       />
-      <DoubleArcLegend />
+      <DoubleArcLegend
+        legendFontsize={props.legendFontsize}
+      />
     </DoubleArcContainer>
   </Chart>
 );

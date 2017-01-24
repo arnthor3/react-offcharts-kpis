@@ -1,19 +1,36 @@
 import { arc } from 'd3-shape';
+import { scaleLinear } from 'd3-scale';
 
-export const dimensions = ({ width, height }) => {
-  const cx = width / 2;
-  const cy = height / 2;
-  const radius = Math.min(cx, cy);
-  return { cx, cy, radius };
-};
+export const getBackgroundArcs =
+  ({ benchmark, value, startAngle, endAngle }, radius) => {
+    const benchArc = (
+      arc()
+        .innerRadius(benchmark.inner * radius)
+        .outerRadius(benchmark.outer * radius)
+        .startAngle(startAngle)
+        .endAngle(endAngle)
+    );
+    const valueArc = (
+      arc()
+        .innerRadius(value.inner * radius)
+        .outerRadius(value.outer * radius)
+        .startAngle(startAngle)
+        .endAngle(endAngle)
+    );
+    return { benchArc, valueArc };
+  };
 
-export const getArc = (props) => {
-  const { radius } = dimensions(props);
-  const { inner, outer, startAngle } = props;
-  return (
-    arc()
-      .innerRadius(inner * radius)
-      .outerRadius(outer * radius)
-      .startAngle(startAngle)
-  );
-};
+export const getScales =
+  ({ benchmark, value, startAngle, endAngle }) => {
+    const valueScale = (
+      scaleLinear()
+        .domain(value.domain || [0, 100])
+        .range([startAngle, endAngle])
+    );
+    const benchScale = (
+      scaleLinear()
+        .domain(benchmark.domain || [0, 100])
+        .range([startAngle, endAngle])
+    );
+    return { benchScale, valueScale };
+  };

@@ -8,6 +8,7 @@ const doubleValue = {
   label: 'Revenue Per Hour',
   outer: 0.9,
   inner: 0.8,
+  fill: '#811',
 };
 
 const doubleBench = {
@@ -16,6 +17,7 @@ const doubleBench = {
   label: 'Revenue Margin',
   outer: 0.95,
   inner: 0.93,
+  fill: '#118',
 };
 
 const L = () => (
@@ -28,11 +30,11 @@ const L = () => (
       benchmark={doubleBench}
       backgroundBenchmark={{
         fill: 'rgb(200, 200, 200)',
-        stroke: 'rgb(140, 140, 140)',
+        stroke: 'rgb(170, 170, 170)',
       }}
       backgroundValue={{
         fill: 'rgb(200, 200, 200)',
-        stroke: 'rgb(140, 140, 140)',
+        stroke: 'rgb(170, 170, 170)',
       }}
       animationEase="easeCubicInOu"
       animationTime={2250}
@@ -54,6 +56,7 @@ const L = () => (
       bottomPostfixText={{
         fontSize: 0.3,
       }}
+      legendFontsize={0.09}
     />
   </div>
 );

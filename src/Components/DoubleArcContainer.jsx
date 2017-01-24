@@ -8,6 +8,7 @@ import * as ease from 'd3-ease';
 import clone from 'react-offcharts-core/Utils/cloneChildren';
 import * as dim from 'react-offcharts-core/Helpers/arcDimension';
 import * as ch from '../Utils/constants';
+import * as arcs from '../Utils/dimensions';
 
 const shape = PropTypes.shape({
   fill: PropTypes.string,
@@ -59,35 +60,15 @@ export default class ArcContainer extends Component {
       .duration(1500)
       .ease(ease.easeSinInOut)
       .attrTween('d', () => {
-        const valueScale = (
-          scaleLinear()
-            .domain(this.props.value.domain || [0, 100])
-            .range([this.props.startAngle, this.props.endAngle])
-        );
-        const benchScale = (
-          scaleLinear()
-            .domain(this.props.benchmark.domain || [0, 100])
-            .range([this.props.startAngle, this.props.endAngle])
-        );
+        const { valueScale, benchScale } = arcs.getScales(this.props);
         const interValue = interpolate(this.props.startAngle, valueScale(this.props.value.value));
-        const interBench = interpolate(this.props.startAngle, benchScale(this.props.benchmark.value));
-        const d = dim.dimensions(this.props);
-        const valueArc = (
-          arc()
-            .innerRadius(d.radius * this.props.value.outer)
-            .outerRadius(d.radius * this.props.value.inner)
-            .startAngle(this.props.startAngle)
+        const interBench = (
+          interpolate(this.props.startAngle, benchScale(this.props.benchmark.value))
         );
-
-        const forecastArc = (
-          arc()
-            .innerRadius(d.radius * this.props.benchmark.outer)
-            .outerRadius(d.radius * this.props.benchmark.inner)
-            .startAngle(this.props.startAngle)
-        );
-
+        const { radius } = dim.dimensions(this.props);
+        const { valueArc, benchArc } = arcs.getBackgroundArcs(this.props, radius);
         return (t) => {
-          forecast.attr('d', forecastArc.endAngle(interBench(t))() );
+          forecast.attr('d', benchArc.endAngle(interBench(t))());
           return valueArc.endAngle(interValue(t))();
         };
       })
@@ -98,6 +79,16 @@ export default class ArcContainer extends Component {
 
   draw() {
     const els = select(this.container);
+    const forecast = els.select(`.${ch.FORECAST_PATH}`);
+    const value = els.select(`.${ch.VALUE_PATH}`);
+    const { radius } = dim.dimensions(this.props);
+    const { valueArc, benchArc } = arcs.getBackgroundArcs(this.props, radius);
+    const { valueScale, benchScale } = arcs.getScales(this.props);
+    forecast.attr('d', benchArc.endAngle(benchScale(this.props.benchmark.value))());
+    value.attr('d', valueArc.endAngle(valueScale(this.props.value.value))());
+    const centerTextContainer = els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT}`);
+    centerTextContainer.selectAll('text')
+      .attr('transform', 'scale(1)');
   }
 
   renderArc() {
@@ -114,21 +105,7 @@ export default class ArcContainer extends Component {
 
   render() {
     const d = dim.dimensions(this.props);
-    const benchArc = (
-      arc()
-        .innerRadius(d.radius * this.props.benchmark.outer)
-        .outerRadius(d.radius * this.props.benchmark.inner)
-        .startAngle(this.props.startAngle)
-        .endAngle(this.props.endAngle)
-    );
-
-    const valueArc = (
-      arc()
-        .innerRadius(d.radius * this.props.value.outer)
-        .outerRadius(d.radius * this.props.value.inner)
-        .startAngle(this.props.startAngle)
-        .endAngle(this.props.endAngle)
-    );
+    const { benchArc, valueArc } = arcs.getBackgroundArcs(this.props, d.radius);
     return (
       <g
         ref={(c) => { this.container = c; }}
@@ -146,8 +123,8 @@ export default class ArcContainer extends Component {
           fill={this.props.backgroundValue.fill}
           stroke={this.props.backgroundValue.stroke}
         />
-        <path className={ch.FORECAST_PATH} />
-        <path className={ch.VALUE_PATH} />
+        <path className={ch.FORECAST_PATH} fill={this.props.benchmark.fill} />
+        <path className={ch.VALUE_PATH} fill={this.props.value.fill} />
         {clone(this.props, d)}
       </g>
     );

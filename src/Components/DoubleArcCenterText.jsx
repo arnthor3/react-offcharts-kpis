@@ -101,6 +101,7 @@ DoubleArcCenterText.defaultProps = {
   bottomPostfixText: {
     fontSize: 0.15,
   },
-}
+};
+
 
 export default DoubleArcCenterText;
