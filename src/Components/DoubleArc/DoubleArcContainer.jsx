@@ -7,8 +7,8 @@ import { arc } from 'd3-shape';
 import * as ease from 'd3-ease';
 import clone from 'react-offcharts-core/Utils/cloneChildren';
 import * as dim from 'react-offcharts-core/Helpers/arcDimension';
-import * as ch from '../Utils/constants';
-import * as arcs from '../Utils/dimensions';
+import * as ch from '../../Utils/constants';
+import * as arcs from '../../Utils/dimensions';
 
 const shape = PropTypes.shape({
   fill: PropTypes.string,
@@ -33,11 +33,24 @@ export default class ArcContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-
+    return true;
+  }
+  componentWillUpdate(nextProps, nextState) {
+    this.animateOut();
   }
 
   componentDidUpdate(prevProps, prevState) {
     this.renderArc();
+  }
+
+  animateOut() {
+    const els = select(this.container);
+    const centerTextContainer = els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT}`);
+    centerTextContainer.selectAll('text')
+      .transition()
+      .duration(250)
+      .ease(ease.easeCubicInOut)
+      .attr('transform', 'scale(0)');
   }
 
   animateIn() {
@@ -52,18 +65,25 @@ export default class ArcContainer extends Component {
   }
 
   animate() {
+    const { valueScale, benchScale } = arcs.getScales(this.props);
     const els = select(this.container);
     const forecast = els.select(`.${ch.FORECAST_PATH}`);
-    els
-      .select('.offcharts-kpi-doublearc-valuepath')
+    const value = els.select(`.${ch.VALUE_PATH}`);
+    value
       .transition()
       .duration(1500)
       .ease(ease.easeSinInOut)
       .attrTween('d', () => {
-        const { valueScale, benchScale } = arcs.getScales(this.props);
-        const interValue = interpolate(this.props.startAngle, valueScale(this.props.value.value));
+        const interValue = (
+          interpolate(
+            value.node().old || this.props.startAngle,
+            valueScale(this.props.value.value))
+        );
         const interBench = (
-          interpolate(this.props.startAngle, benchScale(this.props.benchmark.value))
+          interpolate(
+            forecast.node().old || this.props.startAngle,
+            benchScale(this.props.benchmark.value),
+          )
         );
         const { radius } = dim.dimensions(this.props);
         const { valueArc, benchArc } = arcs.getBackgroundArcs(this.props, radius);
@@ -73,6 +93,8 @@ export default class ArcContainer extends Component {
         };
       })
       .on('end', () => {
+        forecast.node().old = benchScale(this.props.benchmark.value);
+        value.node().old = valueScale(this.props.value.value);
         this.animateIn();
       });
   }
@@ -86,8 +108,9 @@ export default class ArcContainer extends Component {
     const { valueScale, benchScale } = arcs.getScales(this.props);
     forecast.attr('d', benchArc.endAngle(benchScale(this.props.benchmark.value))());
     value.attr('d', valueArc.endAngle(valueScale(this.props.value.value))());
-    const centerTextContainer = els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT}`);
-    centerTextContainer.selectAll('text')
+
+    els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT}`)
+      .selectAll('text')
       .attr('transform', 'scale(1)');
   }
 

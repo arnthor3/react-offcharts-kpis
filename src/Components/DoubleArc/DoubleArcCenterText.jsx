@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { textProps } from '../Utils/props';
-import * as ch from '../Utils/constants';
+import { textProps } from '../../Utils/props';
+import * as ch from '../../Utils/constants';
 
 
 const Tspan = ({ radius, tProps, text, className }) => {

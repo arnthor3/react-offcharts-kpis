@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { select } from 'd3-selection';
-import * as ch from '../Utils/constants';
+import * as ch from '../../Utils/constants';
 export default class DoubleArcLegend extends Component {
   static propTypes = {
     radius: PropTypes.number,
