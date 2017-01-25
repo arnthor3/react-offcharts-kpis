@@ -5,6 +5,7 @@ import { scaleLinear } from 'd3-scale';
 import 'd3-transition';
 import { arc } from 'd3-shape';
 import * as ease from 'd3-ease';
+import CenterText from './CenterText';
 import * as ch from '../../Utils/arc_constants';
 
 export default class ArcContainer extends Component {
@@ -31,13 +32,22 @@ export default class ArcContainer extends Component {
 
   render() {
     const d = dim.dimensions(this.props);
-    const { benchArc, valueArc } = arcs.getBackgroundArcs(this.props, d.radius);
+    const { background, valueArc } = arcs.getBackgroundArcs(this.props, d.radius);
     return (
       <g
         className={ch.ARC}
         transform={`translate(${d.cx},${d.cy})`}
       >
-        <path />
+        <path
+          className={ch.BACKGROUND}
+        />
+        <path
+          className={ch.BACKGROUND_VALUE}
+        />
+        <path
+          className={ch.VALUE_PATH}
+        />
+        <CenterText />
       </g>
     );
   }

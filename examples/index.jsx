@@ -89,5 +89,73 @@ class Chart extends Component {
   }
 }
 
+class Chart2 extends Component {
+  constructor() {
+    super();
+    this.onClick = this.onClick.bind(this);
+    this.state = {
+      bench: doubleBench,
+      value: doubleValue,
+    };
+  }
 
-render(<Chart />, document.getElementById('app'));
+  onClick() {
+    const { bench, value } = this.state;
+    const val = parseInt(Math.random() * 100, 10);
+    const val2 = parseInt(Math.random() * 100, 10);
+    const newBench = Object.assign({}, bench, { value: val});
+    const newVal = Object.assign({}, value, { value: val2 });
+    this.setState({
+      bench: newBench,
+      value: newVal,
+    });
+  }
+
+  render() {
+    return (
+      <div
+        style={{ width: '40%', height: '400px' }}
+        onClick={this.onClick}
+      >
+        <ArcKpi
+          responsive
+          startAngle={-Math.PI / 2}
+          endAngle={Math.PI / 1.33}
+          value={this.state.value}
+          benchmark={this.state.bench}
+          backgroundBenchmark={{
+            fill: 'rgb(200, 200, 200)',
+            stroke: 'rgb(170, 170, 170)',
+          }}
+          backgroundValue={{
+            fill: 'rgb(200, 200, 200)',
+            stroke: 'rgb(170, 170, 170)',
+          }}
+          animationEase="easeCubicInOu"
+          animationTime={2250}
+          topPostfix="$"
+          bottomPostfix="%"
+          seperator={{
+            stroke: 'black',
+            strokeWidth: '4px',
+          }}
+          topValueText={{
+            fontSize: 0.6,
+          }}
+          topPostfixText={{
+            fontSize: 0.3,
+          }}
+          bottomValueText={{
+            fontSize: 0.3,
+          }}
+          bottomPostfixText={{
+            fontSize: 0.15,
+          }}
+          legendFontsize={0.09}
+        />
+      </div>
+    );
+  }
+}
+
+render(<Chart2 />, document.getElementById('app'));
