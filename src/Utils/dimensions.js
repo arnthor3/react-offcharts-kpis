@@ -1,22 +1,23 @@
 import { arc } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 
+const propsToArc = ({ inner, outer }, radius, start, end) => (
+  arc()
+    .innerRadius(inner * radius)
+    .outerRadius(outer * radius)
+    .startAngle(start)
+    .endAngle(end)
+);
+
+export const getArc =
+({ startAngle, endAngle }, pArc, radius) => (
+  propsToArc(pArc, radius, startAngle, endAngle)
+);
+
 export const getBackgroundArcs =
   ({ benchmark, value, startAngle, endAngle }, radius) => {
-    const benchArc = (
-      arc()
-        .innerRadius(benchmark.inner * radius)
-        .outerRadius(benchmark.outer * radius)
-        .startAngle(startAngle)
-        .endAngle(endAngle)
-    );
-    const valueArc = (
-      arc()
-        .innerRadius(value.inner * radius)
-        .outerRadius(value.outer * radius)
-        .startAngle(startAngle)
-        .endAngle(endAngle)
-    );
+    const benchArc = propsToArc(benchmark, radius, startAngle, endAngle);
+    const valueArc = propsToArc(value, radius, startAngle, endAngle);
     return { benchArc, valueArc };
   };
 

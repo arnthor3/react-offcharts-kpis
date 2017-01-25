@@ -20,7 +20,6 @@ const shape = PropTypes.shape({
 
 export default class ArcContainer extends Component {
   static propTypes = {
-    endAngle: PropTypes.number,
     startAngle: PropTypes.number,
     value: shape,
     benchmark: shape,
@@ -33,14 +32,21 @@ export default class ArcContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.value.value === this.props.value.value &&
+    if (nextProps.width !== this.props.width ||
+    nextProps.height !== this.props.height) {
+      return true;
+    }
+    if (nextProps.value.value === this.props.value.value ||
     this.props.benchmark.value === nextProps.benchmark.value) {
       return false;
     }
     return true;
   }
   componentWillUpdate(nextProps, nextState) {
-    this.animateOut();
+    if (nextProps.value.value !== this.props.value.value ||
+    this.props.benchmark.value !== nextProps.benchmark.value) {
+      this.animateOut();
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

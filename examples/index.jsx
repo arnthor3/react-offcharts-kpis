@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { DoubleArcKpi } from '../src/index';
+import { DoubleArcKpi, ArcKpi } from '../src/index';
 
 const doubleValue = {
   value: 87,
@@ -45,7 +45,7 @@ class Chart extends Component {
   render() {
     return (
       <div
-        style={{ width: '400px', height: '400px' }}
+        style={{ width: '40%', height: '400px' }}
         onClick={this.onClick}
       >
         <DoubleArcKpi
