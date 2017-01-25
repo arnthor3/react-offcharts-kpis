@@ -6,6 +6,7 @@ import guid from 'react-offcharts-core/Utils/guid';
 import DoubleArcContainer from './DoubleArcContainer';
 import DoubleArcCenterText from './DoubleArcCenterText';
 import DoubleArcLegend from './DoubleArcLegend';
+import { textProps, fillAndStroke } from '../../Utils/props';
 
 const DoubleArcKpi = props => (
   <Chart
@@ -17,7 +18,7 @@ const DoubleArcKpi = props => (
   >
     <DoubleArcContainer
       animationTime={props.animationTime}
-      animationValue={props.animationValue}
+      animationEase={props.animationEase}
       value={props.value}
       benchmark={props.benchmark}
       startAngle={props.startAngle}
@@ -28,7 +29,7 @@ const DoubleArcKpi = props => (
       <DoubleArcCenterText
         topValueText={props.topValueText}
         topPostfixText={props.topPostfixText}
-        bottomValueText={props.bottomPostfixText}
+        bottomValueText={props.bottomValueText}
         bottomPostfixText={props.bottomPostfixText}
         bottomPostfix={props.bottomPostfix}
         topPostfix={props.topPostfix}
@@ -40,5 +41,29 @@ const DoubleArcKpi = props => (
     </DoubleArcContainer>
   </Chart>
 );
+
+DoubleArcKpi.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  responsive: PropTypes.bool,
+  id: PropTypes.string,
+  className: PropTypes.string,
+  animationTime: PropTypes.number,
+  animationEase: PropTypes.string,
+  value: PropTypes.shape({}),
+  benchmark: PropTypes.shape({}),
+  topValueText: textProps,
+  topPostfixText: textProps,
+  bottomValueText: textProps,
+  bottomPostfixText: textProps,
+  bottomPostfix: PropTypes.string,
+  topPostfix: PropTypes.string,
+  seperator: fillAndStroke,
+  legendFontsize: PropTypes.number,
+  backgroundValue: fillAndStroke,
+  backgroundBenchmark: fillAndStroke,
+  startAngle: PropTypes.number,
+  endAngle: PropTypes.number,
+};
 
 export default DoubleArcKpi;

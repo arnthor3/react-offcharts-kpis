@@ -7,7 +7,7 @@ import { arc } from 'd3-shape';
 import * as ease from 'd3-ease';
 import clone from 'react-offcharts-core/Utils/cloneChildren';
 import * as dim from 'react-offcharts-core/Helpers/arcDimension';
-import * as ch from '../../Utils/constants';
+import * as ch from '../../Utils/doublearc_constants';
 import * as arcs from '../../Utils/dimensions';
 
 const shape = PropTypes.shape({
@@ -33,6 +33,10 @@ export default class ArcContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.value.value === this.props.value.value &&
+    this.props.benchmark.value === nextProps.benchmark.value) {
+      return false;
+    }
     return true;
   }
   componentWillUpdate(nextProps, nextState) {
@@ -45,8 +49,8 @@ export default class ArcContainer extends Component {
 
   animateOut() {
     const els = select(this.container);
-    const centerTextContainer = els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT}`);
-    centerTextContainer.selectAll('text')
+    const centerTextContainer = els.selectAll(`.${ch.DOUBLE_ARC_CENTER_ITEM}`);
+    centerTextContainer
       .transition()
       .duration(250)
       .ease(ease.easeCubicInOut)
@@ -55,8 +59,10 @@ export default class ArcContainer extends Component {
 
   animateIn() {
     const els = select(this.container);
-    const centerTextContainer = els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT}`);
-    centerTextContainer.selectAll('text')
+    els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}`).text(this.props.value.value);
+    els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}`).text(this.props.benchmark.value)
+    const centerTextContainer = els.selectAll(`.${ch.DOUBLE_ARC_CENTER_ITEM}`);
+    centerTextContainer
       .transition()
       .duration(500)
       .delay((d, i) => i * 65)

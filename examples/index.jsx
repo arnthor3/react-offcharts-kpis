@@ -77,10 +77,10 @@ class Chart extends Component {
             fontSize: 0.3,
           }}
           bottomValueText={{
-            fontSize: 0.6,
+            fontSize: 0.3,
           }}
           bottomPostfixText={{
-            fontSize: 0.3,
+            fontSize: 0.15,
           }}
           legendFontsize={0.09}
         />
