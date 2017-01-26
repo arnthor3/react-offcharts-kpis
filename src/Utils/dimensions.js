@@ -9,6 +9,16 @@ const propsToArc = ({ inner, outer }, radius, start, end) => (
     .endAngle(end)
 );
 
+const getScale = (domain, range) => (
+  scaleLinear()
+    .domain(domain)
+    .range(range)
+);
+
+export const getArcScale = ({ value }) => (
+  getScale(value.domain || [0, 100], [value.startAngle, value.endAngle])
+);
+
 export const getArc =
 ({ startAngle, endAngle }, pArc, radius) => (
   propsToArc(pArc, radius, startAngle, endAngle)

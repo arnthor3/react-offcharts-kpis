@@ -31,7 +31,6 @@ Tspan.propTypes = {
 const CenterText = (props) => {
   const { fontSize } = props.valueText;
   const fs = fontSize * props.radius;
-  const offset = (props.bottomValueText.fontSize * props.radius) * 1.05;
 
   return (
     <g className={ch.DOUBLE_ARC_CENTER_TEXT}>
@@ -39,16 +38,18 @@ const CenterText = (props) => {
         <Tspan
           className={ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}
           radius={props.radius}
-          tProps={props.topValueText}
+          tProps={props.valueText}
         />
         <Tspan
           className={ch.DOUBLE_ARC_CENTER_TEXT_TOP_POSTFIX}
           text={props.topPostfix}
           radius={props.radius}
-          tProps={props.topPostfixText}
+          tProps={props.postfixText}
         />
       </text>
-      <text>{props.legend}</text>
+      <text
+        textAnchor="middle"
+      >{props.legend}</text>
       <line
         x1={-fs / 1.5}
         x2={fs / 1.5}
@@ -61,6 +62,16 @@ const CenterText = (props) => {
       />
       </g>
   );
+};
+
+
+CenterText.defaultProps = {
+  valueText: {
+    fontSize: 0.6,
+  },
+  postfixText: {
+    fontSize: 0.3,
+  },
 };
 
 export default CenterText;

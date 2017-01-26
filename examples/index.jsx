@@ -119,39 +119,30 @@ class Chart2 extends Component {
       >
         <ArcKpi
           responsive
-          startAngle={-Math.PI / 2}
-          endAngle={Math.PI / 1.33}
-          value={this.state.value}
-          benchmark={this.state.bench}
-          backgroundBenchmark={{
-            fill: 'rgb(200, 200, 200)',
-            stroke: 'rgb(170, 170, 170)',
+          startAngle={0}
+          endAngle={Math.PI * 2}
+          background={{
+            inner: 0,
+            outer: 0.95,
+            fill: '#ddd',
+            stroke: '#aaa',
           }}
           backgroundValue={{
-            fill: 'rgb(200, 200, 200)',
-            stroke: 'rgb(170, 170, 170)',
+            inner: 0.85,
+            outer: 0.95,
+            fill: '#bbb',
+            stroke: '#999',
           }}
-          animationEase="easeCubicInOu"
-          animationTime={2250}
-          topPostfix="$"
-          bottomPostfix="%"
-          seperator={{
-            stroke: 'black',
-            strokeWidth: '4px',
+          value={{
+            startAngle: 0,
+            endAngle: Math.PI,
+            inner: 0.80,
+            outer: 0.97,
+            value: 34,
+            fill: '#844',
+            stroke: '#511',
           }}
-          topValueText={{
-            fontSize: 0.6,
-          }}
-          topPostfixText={{
-            fontSize: 0.3,
-          }}
-          bottomValueText={{
-            fontSize: 0.3,
-          }}
-          bottomPostfixText={{
-            fontSize: 0.15,
-          }}
-          legendFontsize={0.09}
+          legend="Revenue Margin"
         />
       </div>
     );
