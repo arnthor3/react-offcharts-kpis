@@ -33,23 +33,22 @@ const CenterText = (props) => {
   const fs = fontSize * props.radius;
 
   return (
-    <g className={ch.DOUBLE_ARC_CENTER_TEXT}>
-      <text transform="scale(0)" className={`${ch.DOUBLE_ARC_CENTER_TEXT_TOP} ${ch.DOUBLE_ARC_CENTER_ITEM}`} >
+    <g className={ch.CENTER_TEXT}>
+      <text transform="scale(0)" className={ch.CENTER_ITEM} >
         <Tspan
-          className={ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}
+          className={ch.CENTER_TEXT_VALUE}
           radius={props.radius}
           tProps={props.valueText}
         />
         <Tspan
-          className={ch.DOUBLE_ARC_CENTER_TEXT_TOP_POSTFIX}
-          text={props.topPostfix}
+          className={ch.CENTER_TEXT_POSTFIX}
+          text={props.postfix}
           radius={props.radius}
           tProps={props.postfixText}
         />
       </text>
-      <text
-        textAnchor="middle"
-      >{props.legend}</text>
+
+
       <line
         x1={-fs / 1.5}
         x2={fs / 1.5}
@@ -60,6 +59,13 @@ const CenterText = (props) => {
         ${ch.DOUBLE_ARC_CENTER_ITEM}`}
         {...props.seperator}
       />
+      <g transform={`translate(0, ${40})`}>
+        <text
+          transform="scale(0)"
+          className={`${ch.CENTER_ITEM} ${ch.CENTER_LEGEND}`}
+          textAnchor="middle"
+        >{props.legend}</text>
+      </g>
       </g>
   );
 };

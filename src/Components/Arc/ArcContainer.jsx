@@ -19,8 +19,21 @@ export default class ArcContainer extends Component {
     this.renderArc();
   }
 
-  animate() {
+  animateIn() {
+    const els = select(this.container);
+    console.log(els.select(`.${ch.CENTER_TEXT_VALUE}`).empty());
+    els.select(`.${ch.CENTER_TEXT_VALUE}`).text(this.props.value.value);
+    const centerItems = els.selectAll(`.${ch.CENTER_ITEM}`);
+    console.log(centerItems);
+    centerItems
+      .transition()
+      .duration(500)
+      .delay((d, i) => i * 65)
+      .ease(ease.easeCubicInOut)
+      .attr('transform', 'scale(1)');
+  }
 
+  animate() {
     const path = select(this.valuePath);
     path
       .transition()
@@ -33,6 +46,9 @@ export default class ArcContainer extends Component {
         const interValue = interpolate(old, scale(this.props.value.value));
         const arc = arcs.getArc(this.props.value, this.props.value, radius);
         return t => arc.endAngle(interValue(t))();
+      })
+      .on('end', () => {
+        this.animateIn();
       });
   }
 
@@ -45,28 +61,49 @@ export default class ArcContainer extends Component {
     this.animate();
   }
 
-  render() {
+  renderBackground() {
+    if (!this.props.background) {
+      return null;
+    }
     const d = dim.dimensions(this.props);
     const background = arcs.getArc(this.props, this.props.background, d.radius);
+    return (
+      <path
+        className={ch.BACKGROUND}
+        d={background()}
+        fill={this.props.background.fill}
+        stroke={this.props.background.stroke}
+      />
+    );
+  }
+
+  renderBackgroundValue() {
+    if (!this.props.backgroundValue) {
+      return null;
+    }
+    const d = dim.dimensions(this.props);
     const backgroundValueArc = arcs.getArc(this.props, this.props.backgroundValue, d.radius);
+    return (
+      <path
+        className={ch.BACKGROUND_VALUE}
+        d={backgroundValueArc()}
+        fill={this.props.backgroundValue.fill}
+        stroke={this.props.backgroundValue.stroke}
+      />
+    );
+  }
+
+  render() {
+    const d = dim.dimensions(this.props);
     return (
       <g
         className={ch.ARC}
         transform={`translate(${d.cx},${d.cy})`}
         ref={(c) => { this.container = c; }}
       >
-        <path
-          className={ch.BACKGROUND}
-          d={background()}
-          fill={this.props.background.fill}
-          stroke={this.props.background.stroke}
-        />
-        <path
-          className={ch.BACKGROUND_VALUE}
-          d={backgroundValueArc()}
-          fill={this.props.backgroundValue.fill}
-          stroke={this.props.backgroundValue.stroke}
-        />
+        {this.renderBackground()}
+        {this.renderBackgroundValue()}
+
         <path
           className={ch.VALUE_PATH}
           ref={(c) => { this.valuePath = c; }}

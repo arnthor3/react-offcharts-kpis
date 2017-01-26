@@ -18,11 +18,16 @@ const ArcKpi = props => (
       background={props.background}
       backgroundValue={props.backgroundValue}
       value={props.value}
-      legend={props.legend}
+
       startAngle={props.startAngle}
       endAngle={props.endAngle}
     >
-      <CenterText />
+      <CenterText
+        postfix={props.postfix}
+        postfixText={props.postfixText}
+        valueText={props.valueText}
+        legend={props.legend}
+      />
     </ArcContainer>
   </Chart>
 );

@@ -142,7 +142,14 @@ class Chart2 extends Component {
             fill: '#844',
             stroke: '#511',
           }}
+          postfix="$"
           legend="Revenue Margin"
+          valueText={{
+            fontSize: 0.5,
+          }}
+          postfixText={{
+            fontSize: 0.25,
+          }}
         />
       </div>
     );

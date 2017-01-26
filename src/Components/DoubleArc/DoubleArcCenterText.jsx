@@ -3,13 +3,15 @@ import { textProps, fillAndStroke } from '../../Utils/props';
 import * as ch from '../../Utils/doublearc_constants';
 
 const Tspan = ({ radius, tProps, text, className }) => {
-  const { fontSize, textAnchor } = tProps;
+  const { fontSize } = tProps;
   const fs = fontSize * radius;
   return (
     <tspan
       className={className}
       fontSize={fs}
       textAnchor="middle"
+      fill={tProps.fill}
+      stroke={tProps.stroke}
     >{text}</tspan>
   );
 };
