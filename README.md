@@ -6,8 +6,12 @@ A part of React-Offcharts Components
 
 ### Usage
 ```js
+  import React from 'react';
+  import { render } from 'react-dom';
+  import { DoubleArcKpi } from 'react-offcharts-kpi';
+
   const L = () => (
-  <div style={{ width: '400px', height: '400px' }}>
+  <div style={{ width: '50%', height: '400px' }}>
     <DoubleArcKpi
       responsive
       startAngle={-Math.PI / 2}
@@ -47,3 +51,5 @@ A part of React-Offcharts Components
   </div>
 )
 ```
+
+
