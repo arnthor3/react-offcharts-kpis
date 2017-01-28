@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { DoubleArcKpi, ArcKpi } from '../src/index';
+import { DoubleArcKpi, ArcKpi } from '../dist/index';
 
 const doubleValue = {
   value: 87,
@@ -34,7 +34,7 @@ class Chart extends Component {
     const { bench, value } = this.state;
     const val = parseInt(Math.random() * 100, 10);
     const val2 = parseInt(Math.random() * 100, 10);
-    const newBench = Object.assign({}, bench, { value: val});
+    const newBench = Object.assign({}, bench, { value: val });
     const newVal = Object.assign({}, value, { value: val2 });
     this.setState({
       bench: newBench,
@@ -156,4 +156,4 @@ class Chart2 extends Component {
   }
 }
 
-render(<Chart2 />, document.getElementById('app'));
+render(<Chart />, document.getElementById('app'));

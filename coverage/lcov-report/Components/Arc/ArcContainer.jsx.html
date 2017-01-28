@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Components/Arc/ArcContainer.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">Components/Arc</a> ArcContainer.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/33</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component, PropTypes } from 'react';
+import { select } from 'd3-selection';
+import { interpolate } from 'd3-interpolate';
+import { scaleLinear } from 'd3-scale';
+import 'd3-transition';
+import * as ease from 'd3-ease';
+import clone from 'react-offcharts-core/Utils/cloneChildren';
+import * as dim from 'react-offcharts-core/Helpers/arcDimension';
+import CenterText from './CenterText';
+import * as ch from '../../Utils/arc_constants';
+import * as arcs from '../../Utils/dimensions';
+&nbsp;
+export default class ArcContainer extends Component {
+<span class="fstat-no" title="function not covered" >  co</span>mponentDidMount() {
+<span class="cstat-no" title="statement not covered" >    this.renderArc();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentDidUpdate(prevProps, prevState) {
+<span class="cstat-no" title="statement not covered" >    this.renderArc();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  an</span>imateIn() {
+    const els = <span class="cstat-no" title="statement not covered" >select(this.container);</span>
+<span class="cstat-no" title="statement not covered" >    console.log(els.select(`.${ch.CENTER_TEXT_VALUE}`).empty());</span>
+<span class="cstat-no" title="statement not covered" >    els.select(`.${ch.CENTER_TEXT_VALUE}`).text(this.props.value.value);</span>
+    const centerItems = <span class="cstat-no" title="statement not covered" >els.selectAll(`.${ch.CENTER_ITEM}`);</span>
+<span class="cstat-no" title="statement not covered" >    console.log(centerItems);</span>
+<span class="cstat-no" title="statement not covered" >    centerItems</span>
+      .transition()
+      .duration(500)
+      .delay(<span class="fstat-no" title="function not covered" >(d</span>, i) =&gt; <span class="cstat-no" title="statement not covered" >i * 65)</span>
+      .ease(ease.easeCubicInOut)
+      .attr('transform', 'scale(1)');
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  an</span>imate() {
+    const path = <span class="cstat-no" title="statement not covered" >select(this.valuePath);</span>
+<span class="cstat-no" title="statement not covered" >    path</span>
+      .transition()
+      .duration(1500)
+      .ease(ease.easeSinInOut)
+      .attrTween('d', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+        const { radius } = <span class="cstat-no" title="statement not covered" >dim.dimensions(this.props);</span>
+        const old = <span class="cstat-no" title="statement not covered" >path.node().old || 0;</span>
+        const scale = <span class="cstat-no" title="statement not covered" >arcs.getArcScale(this.props);</span>
+        const interValue = <span class="cstat-no" title="statement not covered" >interpolate(old, scale(this.props.value.value));</span>
+        const arc = <span class="cstat-no" title="statement not covered" >arcs.getArc(this.props.value, this.props.value, radius);</span>
+<span class="cstat-no" title="statement not covered" >        return <span class="fstat-no" title="function not covered" >t </span>=&gt; <span class="cstat-no" title="statement not covered" >arc.endAngle(interValue(t))();</span></span>
+      })
+      .on('end', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        this.animateIn();</span>
+      });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  dr</span>aw() {
+&nbsp;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  re</span>nderArc() {
+    // if animate
+<span class="cstat-no" title="statement not covered" >    this.animate();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  re</span>nderBackground() {
+<span class="cstat-no" title="statement not covered" >    if (!this.props.background) {</span>
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+    const d = <span class="cstat-no" title="statement not covered" >dim.dimensions(this.props);</span>
+    const background = <span class="cstat-no" title="statement not covered" >arcs.getArc(this.props, this.props.background, d.radius);</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;path
+        className={ch.BACKGROUND}
+        d={background()}
+        fill={this.props.background.fill}
+        stroke={this.props.background.stroke}
+      /&gt;
+    );
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  re</span>nderBackgroundValue() {
+<span class="cstat-no" title="statement not covered" >    if (!this.props.backgroundValue) {</span>
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+    const d = <span class="cstat-no" title="statement not covered" >dim.dimensions(this.props);</span>
+    const backgroundValueArc = <span class="cstat-no" title="statement not covered" >arcs.getArc(this.props, this.props.backgroundValue, d.radius);</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;path
+        className={ch.BACKGROUND_VALUE}
+        d={backgroundValueArc()}
+        fill={this.props.backgroundValue.fill}
+        stroke={this.props.backgroundValue.stroke}
+      /&gt;
+    );
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  re</span>nder() {
+    const d = <span class="cstat-no" title="statement not covered" >dim.dimensions(this.props);</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;g
+        className={ch.ARC}
+        transform={`translate(${d.cx},${d.cy})`}
+        ref={<span class="fstat-no" title="function not covered" >(c</span>) =&gt; { <span class="cstat-no" title="statement not covered" >this.container = c; </span>}}
+      &gt;
+        {this.renderBackground()}
+        {this.renderBackgroundValue()}
+&nbsp;
+        &lt;path
+          className={ch.VALUE_PATH}
+          ref={<span class="fstat-no" title="function not covered" >(c</span>) =&gt; { <span class="cstat-no" title="statement not covered" >this.valuePath = c; </span>}}
+        /&gt;
+        {clone(this.props, d)}
+      &lt;/g&gt;
+    );
+  }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 26 2017 05:34:50 GMT+0000 (GMT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
