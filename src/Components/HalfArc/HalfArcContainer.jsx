@@ -28,6 +28,7 @@ export default class HalfArcContainer extends Base {
 
   animate() {
     const path = select(this.valuePath);
+    const text = select(this.valueText);
     path
       .transition()
       .duration(1500)
@@ -38,7 +39,10 @@ export default class HalfArcContainer extends Base {
         const old = path.node().old || 0;
         const scale = arcs.getArcScale(this.props);
         const interValue = interpolate(scale(old), scale(this.props.value.value));
-        return t => arc.endAngle(interValue(t))();
+        return (t) => {
+          text.text(Math.floor(interValue(t)));
+          return arc.endAngle(interValue(t))();
+        };
       })
       .on('end', () => {
         path.node().old = this.props.value.value;
@@ -89,7 +93,14 @@ export default class HalfArcContainer extends Base {
           <text
             textAnchor="middle"
             fontSize={(d.radius * this.props.valueText.fontSize)}
-          >{this.props.value.value}
+          >
+            <tspan
+              fontSize={(d.radius * this.props.valueText.fontSize)}
+              ref={(c) => { this.valueText = c; }}
+            >
+              {this.props.value.value}
+            </tspan>
+
             <tspan
               fontSize={(d.radius * this.props.postfixText.fontSize)}
             >{this.props.postfix}</tspan>
