@@ -9,6 +9,7 @@ import clone from 'react-offcharts-core/Utils/cloneChildren';
 import * as dim from 'react-offcharts-core/Helpers/arcDimension';
 import * as ch from '../../Utils/doublearc_constants';
 import * as arcs from '../../Utils/dimensions';
+import Base from '../BaseKpi';
 
 const shape = PropTypes.shape({
   fill: PropTypes.string,
@@ -19,7 +20,7 @@ const shape = PropTypes.shape({
   domain: PropTypes.array,
 });
 
-export default class ArcContainer extends Component {
+export default class ArcContainer extends Base {
   static propTypes = {
     startAngle: PropTypes.number,
     value: shape,
@@ -28,9 +29,7 @@ export default class ArcContainer extends Component {
     animationTime: PropTypes.number,
   }
 
-  componentDidMount() {
-    this.renderArc();
-  }
+
 
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.width !== this.props.width ||
@@ -42,32 +41,6 @@ export default class ArcContainer extends Component {
       return false;
     }
     return true;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextProps.value.value !== this.props.value.value ||
-    this.props.benchmark.value !== nextProps.benchmark.value) {
-      this.animateOut();
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    this.renderArc();
-  }
-
-  getEase() {
-    const e = ease[this.props.animationEase];
-    if (typeof e === 'function') {
-      return e;
-    }
-    return ease.easeCubicInOut;
-  }
-
-  getAnimationTime() {
-    if (this.props.animationTime) {
-      return this.props.animationTime;
-    }
-    return 1500;
   }
 
   animateOut() {

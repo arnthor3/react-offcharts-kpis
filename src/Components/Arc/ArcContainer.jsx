@@ -10,8 +10,9 @@ import CenterText from './CenterText';
 import * as ch from '../../Utils/arc_constants';
 import * as arcs from '../../Utils/dimensions';
 import { dataShape, fillAndStroke } from '../../Utils/props';
+import Base from '../BaseKpi';
 
-export default class ArcContainer extends Component {
+export default class ArcContainer extends Base {
   static propTypes = {
     animationEase: PropTypes.string,
     animationTime: PropTypes.number,
@@ -24,10 +25,6 @@ export default class ArcContainer extends Component {
 
   }
 
-  componentDidMount() {
-    this.renderArc();
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.width !== this.props.width ||
     nextProps.height !== this.props.height) {
@@ -37,31 +34,6 @@ export default class ArcContainer extends Component {
       return false;
     }
     return true;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextProps.value.value !== this.props.value.value) {
-      this.animateOut();
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    this.renderArc();
-  }
-
-  getEase() {
-    const e = ease[this.props.animationEase];
-    if (typeof e === 'function') {
-      return e;
-    }
-    return ease.easeCubicInOut;
-  }
-
-  getAnimationTime() {
-    if (this.props.animationTime) {
-      return this.props.animationTime;
-    }
-    return 1500;
   }
 
   animateOut() {
@@ -80,7 +52,6 @@ export default class ArcContainer extends Component {
     const els = select(this.container);
     els.select(`.${ch.CENTER_TEXT_VALUE}`).text(this.props.value.value);
     const centerItems = els.selectAll(`.${ch.CENTER_ITEM}`);
-    console.log(centerItems);
     centerItems
       .transition()
       .duration(500)
@@ -99,10 +70,9 @@ export default class ArcContainer extends Component {
         const { radius } = dim.dimensions(this.props);
         const old = path.node().old || 0;
         const scale = arcs.getArcScale(this.props);
-        const interValue = interpolate(old, scale(this.props.value.value));
+        const interValue = interpolate(scale(old), scale(this.props.value.value));
         const arc = arcs.getArc(this.props.value, this.props.value, radius);
-        console.log(this.props.value);
-        path.node().old = scale(this.props.value.value);
+        path.node().old = this.props.value.value;
         return t => arc.endAngle(interValue(t))();
       })
       .on('end', () => {
@@ -111,7 +81,6 @@ export default class ArcContainer extends Component {
   }
 
   draw() {
-    console.log(this.props.value);
     const path = select(this.valuePath);
     const { radius } = dim.dimensions(this.props);
     const scale = arcs.getArcScale(this.props);

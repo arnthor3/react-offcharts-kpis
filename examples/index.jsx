@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { DoubleArcKpi, ArcKpi } from '../src/index';
+import { DoubleArcKpi, ArcKpi, HalfArcKpi } from '../src/index';
 
 const doubleValue = {
   value: 87,
@@ -155,4 +155,58 @@ class Chart2 extends Component {
   }
 }
 
-render(<Chart2 />, document.getElementById('app'));
+class Chart3 extends Component {
+  constructor() {
+    super();
+    this.onClick = this.onClick.bind(this);
+    this.state = {
+      value: singleValue,
+    };
+  }
+
+  onClick() {
+    const { value } = this.state;
+    const val2 = parseInt(Math.random() * 100, 10);
+    const newVal = Object.assign({}, value, { value: val2 });
+    this.setState({
+      value: newVal,
+    });
+  }
+
+  render() {
+    return (
+      <div
+        style={{ width: '40%', height: '400px' }}
+        onClick={this.onClick}
+      >
+        <HalfArcKpi
+          responsive
+          animationEase="easeCubicInOut"
+          animationTime={1500}
+          background={{
+            inner: 0.70,
+            outer: 0.95,
+            fill: '#bbb',
+            stroke: '#999',
+          }}
+          value={this.state.value}
+          postfix="$"
+          legend="Revenue Margin"
+          legendText={{
+            fontSize: 0.15,
+          }}
+          valueText={{
+            fontSize: 0.65,
+          }}
+          postfixText={{
+            fontSize: 0.25,
+          }}
+        />
+      </div>
+    );
+  }
+}
+
+
+
+render(<Chart3 />, document.getElementById('app'));
