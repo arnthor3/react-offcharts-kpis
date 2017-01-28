@@ -16,6 +16,7 @@ const shape = PropTypes.shape({
   value: PropTypes.number,
   outerRadius: PropTypes.number,
   innerRadius: PropTypes.number,
+  domain: PropTypes.array,
 });
 
 export default class ArcContainer extends Component {
@@ -42,6 +43,7 @@ export default class ArcContainer extends Component {
     }
     return true;
   }
+
   componentWillUpdate(nextProps, nextState) {
     if (nextProps.value.value !== this.props.value.value ||
     this.props.benchmark.value !== nextProps.benchmark.value) {
@@ -51,6 +53,21 @@ export default class ArcContainer extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     this.renderArc();
+  }
+
+  getEase() {
+    const e = ease[this.props.animationEase];
+    if (typeof e === 'function') {
+      return e;
+    }
+    return ease.easeCubicInOut;
+  }
+
+  getAnimationTime() {
+    if (this.props.animationTime) {
+      return this.props.animationTime;
+    }
+    return 1500;
   }
 
   animateOut() {

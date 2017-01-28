@@ -9,19 +9,60 @@ import * as dim from 'react-offcharts-core/Helpers/arcDimension';
 import CenterText from './CenterText';
 import * as ch from '../../Utils/arc_constants';
 import * as arcs from '../../Utils/dimensions';
+import { dataShape, fillAndStroke } from '../../Utils/props';
 
 export default class ArcContainer extends Component {
+  static propTypes = {
+    animationEase: PropTypes.string,
+    animationTime: PropTypes.number,
+    value: dataShape,
+    background: fillAndStroke,
+    backgroundValue: dataShape,
+  }
+
+  static defaultProps = {
+
+  }
+
   componentDidMount() {
     this.renderArc();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.width !== this.props.width ||
+    nextProps.height !== this.props.height) {
+      return true;
+    }
+    if (nextProps.value.value === this.props.value.value) {
+      return false;
+    }
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.value.value !== this.props.value.value) {
+      this.animateOut();
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     this.renderArc();
   }
 
+  animateOut() {
+    const els = select(this.container);
+    els.select(`.${ch.CENTER_TEXT_VALUE}`).text(this.props.value.value);
+    const centerItems = els.selectAll(`.${ch.CENTER_ITEM}`);
+    centerItems
+      .transition()
+      .duration(500)
+      .delay((d, i) => i * 65)
+      .ease(ease.easeCubicInOut)
+      .attr('transform', 'scale(0)');
+  }
+
   animateIn() {
     const els = select(this.container);
-    console.log(els.select(`.${ch.CENTER_TEXT_VALUE}`).empty());
     els.select(`.${ch.CENTER_TEXT_VALUE}`).text(this.props.value.value);
     const centerItems = els.selectAll(`.${ch.CENTER_ITEM}`);
     console.log(centerItems);
@@ -45,6 +86,8 @@ export default class ArcContainer extends Component {
         const scale = arcs.getArcScale(this.props);
         const interValue = interpolate(old, scale(this.props.value.value));
         const arc = arcs.getArc(this.props.value, this.props.value, radius);
+        console.log(this.props.value);
+        path.node().old = scale(this.props.value.value);
         return t => arc.endAngle(interValue(t))();
       })
       .on('end', () => {
@@ -53,12 +96,25 @@ export default class ArcContainer extends Component {
   }
 
   draw() {
-
+    console.log(this.props.value);
+    const path = select(this.valuePath);
+    const { radius } = dim.dimensions(this.props);
+    const scale = arcs.getArcScale(this.props);
+    const arc = arcs.getArc(this.props.value, this.props.value, radius);
+    path.attr('d', arc.endAngle(scale(this.props.value.value))());
+    path.node().old = scale(this.props.value.value);
   }
 
   renderArc() {
-    // if animate
-    this.animate();
+    const shouldAnimate = (
+      this.props.animationTime || this.props.animationEase
+    );
+
+    if (shouldAnimate) {
+      this.animate();
+      return;
+    }
+    this.draw();
   }
 
   renderBackground() {

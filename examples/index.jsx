@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { DoubleArcKpi, ArcKpi } from '../dist/index';
+import { DoubleArcKpi, ArcKpi } from '../src/index';
 
 const doubleValue = {
   value: 87,
-  range: [0, 100],
   label: 'Revenue Per Hour',
   outer: 0.9,
   inner: 0.8,
   fill: '#811',
+  startAngle: 0,
+  endAngle: Math.PI * 2,
 };
 
 const doubleBench = {
@@ -94,19 +95,15 @@ class Chart2 extends Component {
     super();
     this.onClick = this.onClick.bind(this);
     this.state = {
-      bench: doubleBench,
       value: doubleValue,
     };
   }
 
   onClick() {
-    const { bench, value } = this.state;
-    const val = parseInt(Math.random() * 100, 10);
+    const { value } = this.state;
     const val2 = parseInt(Math.random() * 100, 10);
-    const newBench = Object.assign({}, bench, { value: val});
     const newVal = Object.assign({}, value, { value: val2 });
     this.setState({
-      bench: newBench,
       value: newVal,
     });
   }
@@ -121,6 +118,8 @@ class Chart2 extends Component {
           responsive
           startAngle={0}
           endAngle={Math.PI * 2}
+          animationEase="easeCubicInOut"
+          animationTime={1500}
           background={{
             inner: 0,
             outer: 0.95,
@@ -133,19 +132,14 @@ class Chart2 extends Component {
             fill: '#bbb',
             stroke: '#999',
           }}
-          value={{
-            startAngle: 0,
-            endAngle: Math.PI,
-            inner: 0.80,
-            outer: 0.97,
-            value: 34,
-            fill: '#844',
-            stroke: '#511',
-          }}
+          value={this.state.value}
           postfix="$"
           legend="Revenue Margin"
+          legendText={{
+            fontSize: 0.15,
+          }}
           valueText={{
-            fontSize: 0.5,
+            fontSize: 0.65,
           }}
           postfixText={{
             fontSize: 0.25,
@@ -156,4 +150,4 @@ class Chart2 extends Component {
   }
 }
 
-render(<Chart />, document.getElementById('app'));
+render(<Chart2 />, document.getElementById('app'));

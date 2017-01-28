@@ -64,6 +64,7 @@ const CenterText = (props) => {
           transform="scale(0)"
           className={`${ch.CENTER_ITEM} ${ch.CENTER_LEGEND}`}
           textAnchor="middle"
+          fontSize={props.legendText.fontSize * props.radius}
         >{props.legend}</text>
       </g>
       </g>

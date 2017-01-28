@@ -13,3 +13,12 @@ export const textProps = PropTypes.shape({
   stroke: PropTypes.string,
   filter: PropTypes.string,
 });
+
+export const dataShape = PropTypes.shape({
+  fill: PropTypes.string,
+  stroke: PropTypes.string,
+  value: PropTypes.number,
+  outerRadius: PropTypes.number,
+  innerRadius: PropTypes.number,
+  domain: PropTypes.array,
+});
