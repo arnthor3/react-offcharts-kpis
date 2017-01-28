@@ -49,6 +49,21 @@ export default class ArcContainer extends Component {
     this.renderArc();
   }
 
+  getEase() {
+    const e = ease[this.props.animationEase];
+    if (typeof e === 'function') {
+      return e;
+    }
+    return ease.easeCubicInOut;
+  }
+
+  getAnimationTime() {
+    if (this.props.animationTime) {
+      return this.props.animationTime;
+    }
+    return 1500;
+  }
+
   animateOut() {
     const els = select(this.container);
     els.select(`.${ch.CENTER_TEXT_VALUE}`).text(this.props.value.value);

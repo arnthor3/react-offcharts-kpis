@@ -4,13 +4,19 @@ A set of KPI Components to help out with the dashboard creation.
 
 A part of React-Offcharts Components
 
+### NPM
+```sh
+install -S react-offcharts-kpi
+```
+
+
 ### Usage
 ```js
   import React from 'react';
   import { render } from 'react-dom';
   import { DoubleArcKpi } from 'react-offcharts-kpi';
 
-  const L = () => (
+  const KPI = () => (
   <div style={{ width: '50%', height: '400px' }}>
     <DoubleArcKpi
       responsive
@@ -49,7 +55,13 @@ A part of React-Offcharts Components
       legendFontsize={0.09}
     />
   </div>
-)
+);
+
+render(<KPI />, document.getElementById('app'));
+
 ```
 
+### Examples
+Just clone the repo and do npm run start and browse to localhost:8080
+Will put up an example when this is ready
 

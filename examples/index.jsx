@@ -21,6 +21,16 @@ const doubleBench = {
   fill: '#118',
 };
 
+const singleValue = {
+  value: 50,
+  range: [0, 100],
+  outer: 0.95,
+  inner: 0.8,
+  fill: '#994',
+  startAngle: -Math.PI / 2,
+  endAngle: Math.PI / 2,
+};
+
 class Chart extends Component {
   constructor() {
     super();
@@ -95,7 +105,7 @@ class Chart2 extends Component {
     super();
     this.onClick = this.onClick.bind(this);
     this.state = {
-      value: doubleValue,
+      value: singleValue,
     };
   }
 
@@ -116,16 +126,11 @@ class Chart2 extends Component {
       >
         <ArcKpi
           responsive
-          startAngle={0}
-          endAngle={Math.PI * 2}
+          startAngle={-Math.PI / 2}
+          endAngle={Math.PI / 2}
           animationEase="easeCubicInOut"
           animationTime={1500}
-          background={{
-            inner: 0,
-            outer: 0.95,
-            fill: '#ddd',
-            stroke: '#aaa',
-          }}
+
           backgroundValue={{
             inner: 0.85,
             outer: 0.95,
