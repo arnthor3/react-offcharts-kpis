@@ -22,6 +22,10 @@ export default class HalfArcContainer extends Base {
     backgroundValue: dataShape,
   }
 
+  animateOut() {
+
+  }
+
   animate() {
     const path = select(this.valuePath);
     path
@@ -32,10 +36,12 @@ export default class HalfArcContainer extends Base {
         const d = arcs.halfArcDimensions(this.props);
         const arc = arcs.halfArc(this.props.value, d.radius);
         const old = path.node().old || 0;
-        console.log(d.radius);
         const scale = arcs.getArcScale(this.props);
         const interValue = interpolate(scale(old), scale(this.props.value.value));
         return t => arc.endAngle(interValue(t))();
+      })
+      .on('end', () => {
+        path.node().old = this.props.value.value;
       });
   }
 
@@ -79,6 +85,22 @@ export default class HalfArcContainer extends Base {
           fill={this.props.value.fill}
           stroke={this.props.value.stroke}
         />
+        <g>
+          <text
+            textAnchor="middle"
+            fontSize={(d.radius * this.props.valueText.fontSize)}
+          >{this.props.value.value}
+            <tspan
+              fontSize={(d.radius * this.props.postfixText.fontSize)}
+            >{this.props.postfix}</tspan>
+          </text>
+          <text
+            textAnchor="middle"
+            fontSize={d.radius * this.props.legendText.fontSize}
+            transform={`translate(${0},${(d.radius * this.props.legendText.fontSize) * 1.20})`}
+          >{this.props.legend}</text>
+        </g>
+
       </g>
     );
   }

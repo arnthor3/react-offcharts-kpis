@@ -16,6 +16,11 @@ const HalfArcKpi = props => (
     className={props.className}
   >
     <HalfArcContainer
+      legend={props.legend}
+      valueText={props.valueText}
+      legendText={props.legendText}
+      postfix={props.postfix}
+      postfixText={props.postfixText}
       range={props.range}
       background={props.background}
       value={props.value}

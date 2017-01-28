@@ -193,10 +193,10 @@ class Chart3 extends Component {
           postfix="$"
           legend="Revenue Margin"
           legendText={{
-            fontSize: 0.15,
+            fontSize: 0.1,
           }}
           valueText={{
-            fontSize: 0.65,
+            fontSize: 0.55,
           }}
           postfixText={{
             fontSize: 0.25,
