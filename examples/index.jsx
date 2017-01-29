@@ -28,6 +28,16 @@ const singleValue = {
   inner: 0.8,
   fill: '#994',
   startAngle: -Math.PI / 2,
+  endAngle: (Math.PI * 2) - (Math.PI / 2) ,
+};
+
+const halfArcValue = {
+  value: 50,
+  range: [0, 100],
+  outer: 0.95,
+  inner: 0.7,
+  fill: '#994',
+  startAngle: -Math.PI / 2,
   endAngle: Math.PI / 2,
 };
 
@@ -126,8 +136,8 @@ class Chart2 extends Component {
       >
         <ArcKpi
           responsive
-          startAngle={-Math.PI / 2}
-          endAngle={Math.PI / 2}
+          startAngle={0}
+          endAngle={Math.PI * 2}
           animationEase="easeCubicInOut"
           animationTime={1500}
 
@@ -160,7 +170,7 @@ class Chart3 extends Component {
     super();
     this.onClick = this.onClick.bind(this);
     this.state = {
-      value: singleValue,
+      value: halfArcValue,
     };
   }
 
@@ -207,6 +217,13 @@ class Chart3 extends Component {
   }
 }
 
+const All = () => (
+  <span>
+    <Chart></Chart>
+    <Chart2></Chart2>
+    <Chart3></Chart3>
+  </span>
+);
 
 
-render(<Chart3 />, document.getElementById('app'));
+render(<All />, document.getElementById('app'));

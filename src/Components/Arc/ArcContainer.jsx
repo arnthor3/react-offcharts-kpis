@@ -22,7 +22,15 @@ export default class ArcContainer extends Base {
   }
 
   static defaultProps = {
-
+    valueText: {
+      fontSize: 0.5,
+    },
+    legendText: {
+      fontSize: 0.1,
+    },
+    postfixText: {
+      fontSize: 0.25,
+    },
   }
 
   shouldComponentUpdate(nextProps, nextState) {

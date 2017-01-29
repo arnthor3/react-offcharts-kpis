@@ -19,7 +19,23 @@ export default class HalfArcContainer extends Base {
     animationTime: PropTypes.number,
     value: dataShape,
     background: fillAndStroke,
-    backgroundValue: dataShape,
+  }
+
+  static defaultProps = {
+    background: {
+      outer: 1,
+      inner: 0.8,
+    },
+    valueText: {
+      fontSize: 0.5,
+    },
+    legendText: {
+      fontSize: 0.1,
+    },
+    postfixText: {
+      fontSize: 0.25,
+    },
+
   }
 
   animateOut() {
@@ -38,9 +54,10 @@ export default class HalfArcContainer extends Base {
         const arc = arcs.halfArc(this.props.value, d.radius);
         const old = path.node().old || 0;
         const scale = arcs.getArcScale(this.props);
+        const interNum = interpolate(old, this.props.value.value);
         const interValue = interpolate(scale(old), scale(this.props.value.value));
         return (t) => {
-          text.text(Math.floor(interValue(t)));
+          text.text(Math.floor(interNum(t)));
           return arc.endAngle(interValue(t))();
         };
       })
@@ -55,6 +72,32 @@ export default class HalfArcContainer extends Base {
     const arc = arcs.halfArc(this.props.value, d.radius);
     const old = path.node().old || 0;
     const scale = arcs.getArcScale(this.props);
+  }
+
+  renderCenterText() {
+    const d = arcs.halfArcDimensions(this.props);
+    return (
+      <g>
+        <text
+          textAnchor="middle"
+        >
+          <tspan
+            fontSize={(d.radius * this.props.valueText.fontSize)}
+            ref={(c) => { this.valueText = c; }}
+          >
+          {this.props.value.value}
+          </tspan>
+          <tspan
+            fontSize={(d.radius * this.props.postfixText.fontSize)}
+          >{this.props.postfix}</tspan>
+        </text>
+        <text
+          textAnchor="middle"
+          fontSize={d.radius * this.props.legendText.fontSize}
+          transform={`translate(${0},${(d.radius * this.props.legendText.fontSize) * 1.20})`}
+        >{this.props.legend}</text>
+      </g>
+    );
   }
 
   render() {
@@ -89,29 +132,7 @@ export default class HalfArcContainer extends Base {
           fill={this.props.value.fill}
           stroke={this.props.value.stroke}
         />
-        <g>
-          <text
-            textAnchor="middle"
-            fontSize={(d.radius * this.props.valueText.fontSize)}
-          >
-            <tspan
-              fontSize={(d.radius * this.props.valueText.fontSize)}
-              ref={(c) => { this.valueText = c; }}
-            >
-              {this.props.value.value}
-            </tspan>
-
-            <tspan
-              fontSize={(d.radius * this.props.postfixText.fontSize)}
-            >{this.props.postfix}</tspan>
-          </text>
-          <text
-            textAnchor="middle"
-            fontSize={d.radius * this.props.legendText.fontSize}
-            transform={`translate(${0},${(d.radius * this.props.legendText.fontSize) * 1.20})`}
-          >{this.props.legend}</text>
-        </g>
-
+        {this.renderCenterText()}
       </g>
     );
   }

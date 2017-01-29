@@ -28,7 +28,27 @@ export default class ArcContainer extends Base {
     animationEase: PropTypes.string,
     animationTime: PropTypes.number,
   }
+  static defaultProps = {
+    background: {
+      outer: 1,
+      inner: 0.8,
+    },
+    valueText: {
+      fontSize: 0.5,
+    },
+    legendText: {
+      fontSize: 0.1,
+    },
+    postfixText: {
+      fontSize: 0.25,
+    },
+    backgroundBenchmark: {
 
+    },
+    backgroundValue: {
+
+    }
+  }
 
 
   shouldComponentUpdate(nextProps, nextState) {

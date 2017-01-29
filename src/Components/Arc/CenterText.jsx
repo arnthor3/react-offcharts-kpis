@@ -79,6 +79,9 @@ CenterText.defaultProps = {
   postfixText: {
     fontSize: 0.3,
   },
+  legendText: {
+    fontSize: 0.1,
+  },
 };
 
 export default CenterText;
