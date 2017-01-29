@@ -109,23 +109,68 @@ Name|Type|Default|Description|
 ---|---|---|---
 animationTime|number|*null*| milliseconds for animation when updating value paths
 animationEase|number|*null*| The name of the d3 easing function, other values like, easeBack, easeBackInOut, easeSinInOut, easeExpInOut. See d3 easing page for more ideas.
-value|shape|*null*| The shape of the value object
+value|Datahape|*null*| The shape of the value object
+benchmark|Datahape|*null*| The shape of the value object
 startAngle|number|*null*|Start angle
 endAngle|number|*null*|End angle
 backgroundBenchmark|shape|*null*| The fill and stroke of the background benchmark
 backgroundValue|shape|*null*|The fill and stroke of the background value
-topValueText|shape|*null*|text props for the top value text
-topPostfixText|shape|*null*|Sets the class for the component
-bottomValueText|shape|*null*|Sets the id for the Component
-bottomPostfixText|shape|*null*|Sets the class for the component
+topValueText|TextShape|*null*|text props for the top value text
+topPostfixText|TextShape|*null*|Sets the class for the component
+bottomValueText|TextShape|*null*|Sets the id for the Component
+bottomPostfixText|TextShape|*null*|Sets the class for the component
 bottomPostfix|string|*null*|Sets the id for the Component
 topPostfix|string|*null*|Sets the class for the component
 seperator|shape|*null*|Sets the id for the Component
 legendFontsize|number|*null*|Sets the class for the component
 
-Will post better docs when I have the time.
+### Props ArcKpi
+Name|Type|Default|Description|
+---|---|---|---
+animationTime|number|*null*| milliseconds for animation when updating value paths
+animationEase|number|*null*| The name of the d3 easing function, other values like, easeBack, easeBackInOut, easeSinInOut, easeExpInOut. See d3 easing page for more ideas.
+value|Datahape|*null*| The shape of the value object
+startAngle|number|*null*|Start angle
+endAngle|number|*null*|End angle
+backgroundValue|shape|*null*|The fill and stroke of the background value
+background|shape|*null*| The shape of the fill, stroke and shape of the background
+valueText|TextShape|*null*|text props for the top value text
+postfixText|TextShape|*null*|Sets the class for the component
+postfix|string|*null*|Sets the class for the component
+seperator|shape|*null*|Sets the id for the Component
+legendFontsize|number|*null*|Sets the class for the component
 
-### examples
+
+#### The Datahape Prop
+
+This prop controles the path.
+
+Name|Type|Default|Description|
+fill|string|*null*| The color fill,  '#123' or 'rgba(50,50,50,.3)'
+stroke|string|*null*| The color stroke, '#123' or 'rgba(50,50,50,.3)'
+value|number|*null*| The value of the path
+outer|number|*null*| The percentage of radius, a value of one would mean 100% of the raidus
+inner|number|*null*| The inner value, also a percentage of the radius
+domain|array|*[0, 100]*| The domain of the values, if you are working with percentages it would be [0, 100],
+
+NOTE: The ArcKpi Datashap also holds the start- and endangle so the user can set where the path should start.
+
+If you prefer you can style the component with css, all the parts in the component have classnames so they can be targeted very easily.
+
+#### The TextShape Prop
+
+This props allows the user to set the style of the text
+
+Name|Type|Default|Description|
+fontSize|number|*null*| A percentage of the radius, where 1 would be 100% of the radius and 0.5 50% of the radius,
+fill|string|*null*| The color fill,  '#123' or 'rgba(50,50,50,.3)'
+stroke|string|*null*| The color stroke, '#123' or 'rgba(50,50,50,.3)'
+
+As with other parts of the components the text elements have classnames on them so you can style them with css as well.
+
+Note: The text anchor is always set to "middle"
+
+### Examples
 You can [check this out](https://arnthor3.github.io/arnthor3/kpi.html).
 
 

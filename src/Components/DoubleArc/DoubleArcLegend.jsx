@@ -37,14 +37,29 @@ export default class DoubleArcLegend extends Component {
         className={ch.LEGEND}
       >
         <g ref={(c) => { this.top = c; }}>
-          <rect fill={this.props.value.fill} width={bs} y={-bs} height={bs} x={-bs * 1.5} />
-          <text fontSize={fs}>{this.props.value.label}</text>
+          <rect
+            fill={this.props.value.fill}
+            width={bs}
+            y={-bs}
+            height={bs}
+            x={-bs * 1.5}
+          />
+          <text
+            fontSize={fs}
+
+          >{this.props.value.label}</text>
         </g>
         <g
           transform={`translate(0, ${this.props.radius * 0.1})`}
           ref={(c) => { this.bottom = c; }}
         >
-          <rect fill={this.props.benchmark.fill} width={bs} y={-bs} height={bs} x={-bs * 1.5} />
+          <rect
+            fill={this.props.benchmark.fill}
+            width={bs}
+            y={-bs}
+            height={bs}
+            x={-bs * 1.5}
+          />
           <text fontSize={fs} >{this.props.benchmark.label}</text>
         </g>
       </g>
