@@ -1,6 +1,6 @@
 {
   "name": "react-offcharts-kpis",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "description": "a collection of kpi visualization components",
   "main": "dist/index.js",
   "scripts": {

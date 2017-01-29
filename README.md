@@ -123,7 +123,10 @@ topPostfix|string|*null*|Sets the class for the component
 seperator|shape|*null*|Sets the id for the Component
 legendFontsize|number|*null*|Sets the class for the component
 
-### TODO finish documentation and examples
+Will post better docs when I have the time.
+
+### examples
+You can [check this out](https://arnthor3.github.io/arnthor3/kpi.html).
 
 
 ### Licence
