@@ -45,6 +45,11 @@ HalfArcKpi.propTypes = {
   background: dataShape,
   value: dataShape,
   range: PropTypes.arrayOf(PropTypes.number),
+  postfix: PropTypes.string,
+  postfixText: textProps,
+  valueText: textProps,
+  legend: PropTypes.string,
+  legendText: textProps,
 };
 
 export default HalfArcKpi;

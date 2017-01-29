@@ -5,6 +5,7 @@ import Gradients from 'react-offcharts-core/Components/Defs/Gradients';
 import guid from 'react-offcharts-core/Utils/guid';
 import ArcContainer from './ArcContainer';
 import CenterText from './CenterText';
+import { textProps, fillAndStroke, dataShape } from '../../Utils/props';
 
 const ArcKpi = props => (
   <Chart
@@ -35,11 +36,23 @@ const ArcKpi = props => (
 );
 
 ArcKpi.propTypes = {
+  background: dataShape,
+  backgroundValue: dataShape,
+  value: dataShape,
+  animationTime: PropTypes.number,
+  animationEase: PropTypes.string,
+  startAngle: PropTypes.number,
+  endAngle: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
   responsive: PropTypes.bool,
   id: PropTypes.string,
   className: PropTypes.string,
+  postfix: PropTypes.string,
+  postfixText: textProps,
+  valueText: textProps,
+  legend: PropTypes.string,
+  legendText: textProps,
 };
 
 export default ArcKpi;

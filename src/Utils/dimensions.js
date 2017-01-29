@@ -1,8 +1,6 @@
 import { arc } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 
-
-
 const propsToArc = ({ inner, outer }, radius, start, end) => (
   arc()
     .innerRadius(inner * radius)
@@ -28,6 +26,10 @@ export const halfArcDimensions = ({ width, height }) => {
 
   return { x, y: (height / 2) + (radius / 2), radius };
 };
+
+export const getHalfArcScale = ({ value }) => (
+  getScale(value.domain || [0, 100], [Math.PI / -2, Math.PI / 2])
+);
 
 export const getArcScale = ({ value }) => (
   getScale(value.domain || [0, 100], [value.startAngle, value.endAngle])

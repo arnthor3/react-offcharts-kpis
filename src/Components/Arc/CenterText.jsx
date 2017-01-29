@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { textProps, fillAndStroke } from '../../Utils/props';
+import { textProps, fillAndStroke, dataShape } from '../../Utils/props';
 import * as ch from '../../Utils/arc_constants';
 
 const Tspan = ({ radius, tProps, text, className }) => {
@@ -10,6 +10,8 @@ const Tspan = ({ radius, tProps, text, className }) => {
       className={className}
       fontSize={fs}
       textAnchor="middle"
+      fill={tProps.fill}
+      stroke={tProps.stroke}
     >{text}</tspan>
   );
 };
@@ -67,10 +69,19 @@ const CenterText = (props) => {
           fontSize={props.legendText.fontSize * props.radius}
         >{props.legend}</text>
       </g>
-      </g>
+    </g>
   );
 };
 
+CenterText.propTypes = {
+  legendText: textProps,
+  radius: PropTypes.number,
+  legend: PropTypes.string,
+  seperator: PropTypes.shape(),
+  postfix: PropTypes.string,
+  postfixText: textProps,
+  valueText: textProps,
+};
 
 CenterText.defaultProps = {
   valueText: {

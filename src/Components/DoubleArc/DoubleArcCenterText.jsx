@@ -36,7 +36,7 @@ const DoubleArcCenterText = (props) => {
   const offset = (props.bottomValueText.fontSize * props.radius) * 1.05;
 
   return (
-    <g className={ch.DOUBLE_ARC_CENTER_TEXT} style={{opacity: 1}}>
+    <g className={ch.DOUBLE_ARC_CENTER_TEXT}>
       <text transform="scale(0)" className={`${ch.DOUBLE_ARC_CENTER_TEXT_TOP} ${ch.DOUBLE_ARC_CENTER_ITEM}`} >
         <Tspan
           className={ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}

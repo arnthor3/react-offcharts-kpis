@@ -15,7 +15,8 @@ export default class BaseKpiArc extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextProps.value.value !== this.props.value.value) {
+    if (nextProps.value.value !== this.props.value.value
+    && typeof this.animateOut === 'function') {
       this.animateOut();
     }
   }

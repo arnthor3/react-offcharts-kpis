@@ -70,10 +70,12 @@ export default class ArcContainer extends Base {
 
   animate() {
     const path = select(this.valuePath);
+    const time = this.getAnimationTime();
+    const e = this.getEase();
     path
       .transition()
-      .duration(1500)
-      .ease(ease.easeSinInOut)
+      .duration(time)
+      .ease(e)
       .attrTween('d', () => {
         const { radius } = dim.dimensions(this.props);
         const old = path.node().old || 0;

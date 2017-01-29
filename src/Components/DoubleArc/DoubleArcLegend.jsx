@@ -1,11 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import { select } from 'd3-selection';
 import * as ch from '../../Utils/doublearc_constants';
+import { dataShape } from '../../Utils/props';
 
 export default class DoubleArcLegend extends Component {
   static propTypes = {
     radius: PropTypes.number,
     legendFontsize: PropTypes.number,
+    value: dataShape,
+    benchmark: dataShape,
   }
 
   componentDidMount() {

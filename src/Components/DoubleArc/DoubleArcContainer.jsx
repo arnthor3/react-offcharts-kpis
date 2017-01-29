@@ -42,12 +42,8 @@ export default class ArcContainer extends Base {
     postfixText: {
       fontSize: 0.25,
     },
-    backgroundBenchmark: {
-
-    },
-    backgroundValue: {
-
-    }
+    backgroundBenchmark: {},
+    backgroundValue: {},
   }
 
 
@@ -76,7 +72,7 @@ export default class ArcContainer extends Base {
   animateIn() {
     const els = select(this.container);
     els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}`).text(this.props.value.value);
-    els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}`).text(this.props.benchmark.value)
+    els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}`).text(this.props.benchmark.value);
     const centerTextContainer = els.selectAll(`.${ch.DOUBLE_ARC_CENTER_ITEM}`);
     centerTextContainer
       .transition()
@@ -91,10 +87,12 @@ export default class ArcContainer extends Base {
     const els = select(this.container);
     const forecast = els.select(`.${ch.FORECAST_PATH}`);
     const value = els.select(`.${ch.VALUE_PATH}`);
+    const e = this.getEase();
+    const time = this.getAnimationTime();
     value
       .transition()
-      .duration(1500)
-      .ease(ease.easeSinInOut)
+      .duration(time)
+      .ease(e)
       .attrTween('d', () => {
         const interValue = (
           interpolate(

@@ -8,8 +8,6 @@ const doubleValue = {
   outer: 0.9,
   inner: 0.8,
   fill: '#811',
-  startAngle: 0,
-  endAngle: Math.PI * 2,
 };
 
 const doubleBench = {
@@ -28,7 +26,7 @@ const singleValue = {
   inner: 0.8,
   fill: '#994',
   startAngle: -Math.PI / 2,
-  endAngle: (Math.PI * 2) - (Math.PI / 2) ,
+  endAngle: (Math.PI * 2) - (Math.PI / 2),
 };
 
 const halfArcValue = {
@@ -37,8 +35,6 @@ const halfArcValue = {
   outer: 0.95,
   inner: 0.7,
   fill: '#994',
-  startAngle: -Math.PI / 2,
-  endAngle: Math.PI / 2,
 };
 
 class Chart extends Component {
@@ -140,7 +136,11 @@ class Chart2 extends Component {
           endAngle={Math.PI * 2}
           animationEase="easeCubicInOut"
           animationTime={1500}
-
+          background={{
+            inner: 0,
+            outer: 0.95,
+            fill: '#eee',
+          }}
           backgroundValue={{
             inner: 0.85,
             outer: 0.95,
@@ -191,8 +191,8 @@ class Chart3 extends Component {
       >
         <HalfArcKpi
           responsive
-          animationEase="easeCubicInOut"
           animationTime={1500}
+          animationEase="easeBounce"
           background={{
             inner: 0.70,
             outer: 0.95,

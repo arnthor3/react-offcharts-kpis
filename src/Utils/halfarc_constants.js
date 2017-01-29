@@ -1,0 +1,12 @@
+export const MAIN = 'offcharts-kpi';
+export const HALFARC = `${MAIN}-halfarc`;
+export const VALUE_PATH = `${HALFARC}-valuepath`;
+export const BACKGROUND = `${HALFARC}-background`;
+export const CENTER_TEXT = `${HALFARC}-centertext`;
+export const CENTER_ITEM = `${HALFARC}-centeritem`;
+export const CENTER_TEXT_VALUE = `${HALFARC}-centertext-value`;
+export const CENTER_TEXT_POSTFIX = `${HALFARC}-centertext-postfix`;
+export const RANGE_TEXT = `${HALFARC}-rangetext`;
+export const RANGE_TEXT_LEFT = `${RANGE_TEXT}-left`;
+export const RANGE_TEXT_RIGHT = `${RANGE_TEXT}-right`;
+export const LEGEND = `${HALFARC}-legend`;
