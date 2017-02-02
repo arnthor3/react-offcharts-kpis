@@ -49,9 +49,9 @@ ArcKpi.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   postfix: PropTypes.string,
+  legend: PropTypes.string,
   postfixText: textProps,
   valueText: textProps,
-  legend: PropTypes.string,
   legendText: textProps,
 };
 

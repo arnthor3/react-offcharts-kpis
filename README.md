@@ -3,12 +3,16 @@ A Set of KPI Components to help out with the dashboard creation.
 
 These Components will be included in the Offcharts Library.
 
+### Examples
+You can [check this out](https://arnthor3.github.io/arnthor3/kpi.html).
+Also there are a couple of examples in the directory
+
 ### Disclaimer
-This is a work in progress and will change
+This is a work in progress and will change/improve
 
 ### Install
 ```sh
-install -S react-offcharts-kpi
+install -S react-offcharts-kpis
 ```
 
 ### Usage
@@ -31,7 +35,7 @@ import { render } from 'react-dom';
 import { DoubleArcKpi, ArcKpi, HalfArcKpi } from 'react-offcharts-kpi';
 
 
-const doubleValue = {
+const value = {
   value: 87,
   label: 'Revenue Per Hour',
   outer: 0.9,
@@ -40,7 +44,7 @@ const doubleValue = {
   domain: [0, 5000]
 };
 
-const doubleBench = {
+const bench = {
   value: 47,
   domain: [0, 100],
   label: 'Revenue Margin',
@@ -56,8 +60,8 @@ const DashboardStrip = () => (
           responsive
           startAngle={-Math.PI / 2}
           endAngle={Math.PI / 1.33}
-          value={this.state.value}
-          benchmark={this.state.bench}
+          value={value}
+          benchmark={bench}
           backgroundBenchmark={{
             fill: 'rgb(200, 200, 200)',
             stroke: 'rgb(170, 170, 170)',
@@ -170,12 +174,12 @@ As with other parts of the components the text elements have classnames on them 
 
 Note: The text anchor is always set to "middle"
 
-### Examples
-You can [check this out](https://arnthor3.github.io/arnthor3/kpi.html).
+#### CSS
+All the elements in the components have classNames either on them or in the parent so it should be easy to target each element and customize styles.
 
 
 ### Licence
-MIT, 2017 (c) Arnthor Agustsson
+MIT, Copyright 2017, Arnthor Agustsson
 
 
 
