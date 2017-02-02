@@ -150,6 +150,7 @@ legendFontsize|number|*null*|Sets the class for the component
 This prop controles the path.
 
 Name|Type|Default|Description|
+---|---|---|---
 fill|string|*null*| The color fill,  '#123' or 'rgba(50,50,50,.3)'
 stroke|string|*null*| The color stroke, '#123' or 'rgba(50,50,50,.3)'
 value|number|*null*| The value of the path
@@ -166,6 +167,7 @@ If you prefer you can style the component with css, all the parts in the compone
 This props allows the user to set the style of the text
 
 Name|Type|Default|Description|
+---|---|---|---
 fontSize|number|*null*| A percentage of the radius, where 1 would be 100% of the radius and 0.5 50% of the radius,
 fill|string|*null*| The color fill,  '#123' or 'rgba(50,50,50,.3)'
 stroke|string|*null*| The color stroke, '#123' or 'rgba(50,50,50,.3)'
