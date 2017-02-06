@@ -27,6 +27,7 @@ Tspan.propTypes = {
   tProps: textProps,
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   className: PropTypes.string,
+  decimal: PropTypes.bool,
 };
 
 
@@ -42,6 +43,13 @@ const CenterText = (props) => {
           radius={props.radius}
           tProps={props.valueText}
         />
+        {props.decimal ?
+          <Tspan
+            className={ch.CENTER_TEXT_FRACTION}
+            radius={props.radius}
+            tProps={props.fractionText}
+          /> : null
+        }
         <Tspan
           className={ch.CENTER_TEXT_POSTFIX}
           text={props.postfix}
@@ -81,6 +89,8 @@ CenterText.propTypes = {
   postfix: PropTypes.string,
   postfixText: textProps,
   valueText: textProps,
+  fractionText: textProps,
+  decimal: PropTypes.bool,
 };
 
 CenterText.defaultProps = {
@@ -92,6 +102,9 @@ CenterText.defaultProps = {
   },
   legendText: {
     fontSize: 0.1,
+  },
+  fractionText: {
+    fontSize: 0.45,
   },
 };
 

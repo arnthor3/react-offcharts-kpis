@@ -16,6 +16,7 @@ const ArcKpi = props => (
     className={props.className}
   >
     <ArcContainer
+      decimal={props.decimal}
       background={props.background}
       backgroundValue={props.backgroundValue}
       value={props.value}
@@ -53,6 +54,7 @@ ArcKpi.propTypes = {
   postfixText: textProps,
   valueText: textProps,
   legendText: textProps,
+  decimal: PropTypes.bool,
 };
 
 export default ArcKpi;

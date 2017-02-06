@@ -6,6 +6,7 @@ import 'd3-transition';
 import * as ease from 'd3-ease';
 import clone from 'react-offcharts-core/Utils/cloneChildren';
 import * as dim from 'react-offcharts-core/Helpers/arcDimension';
+import { round, splitNumber } from 'react-offcharts-core/Utils/numbers';
 import CenterText from './CenterText';
 import * as ch from '../../Utils/arc_constants';
 import * as arcs from '../../Utils/dimensions';
@@ -19,6 +20,7 @@ export default class ArcContainer extends Base {
     value: dataShape,
     background: fillAndStroke,
     backgroundValue: dataShape,
+    decimal: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -58,7 +60,15 @@ export default class ArcContainer extends Base {
 
   animateIn() {
     const els = select(this.container);
-    els.select(`.${ch.CENTER_TEXT_VALUE}`).text(this.props.value.value);
+    if (this.props.decimal) {
+      const value = round(this.props.value.value);
+      const sp = splitNumber(value, '.');
+      els.select(`.${ch.CENTER_TEXT_VALUE}`).text(sp.number);
+      els.select(`.${ch.CENTER_TEXT_FRACTION}`).text(`.${sp.fraction}`);
+    } else {
+      els.select(`.${ch.CENTER_TEXT_VALUE}`).text(this.props.value.value);
+    }
+
     const centerItems = els.selectAll(`.${ch.CENTER_ITEM}`);
     centerItems
       .transition()
@@ -157,6 +167,8 @@ export default class ArcContainer extends Base {
         <path
           className={ch.VALUE_PATH}
           ref={(c) => { this.valuePath = c; }}
+          fill={this.props.value.fill}
+          stroke={this.props.value.stroke}
         />
         {clone(this.props, d)}
       </g>

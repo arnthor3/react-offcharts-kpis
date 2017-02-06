@@ -132,7 +132,6 @@ class Chart2 extends Component {
       >
         <ArcKpi
           responsive
-          decimal
           startAngle={0}
           endAngle={Math.PI * 2}
           animationEase="easeCubicInOut"
@@ -149,8 +148,8 @@ class Chart2 extends Component {
             stroke: '#999',
           }}
           value={this.state.value}
-          postfix="$"
-          legend="Revenue Margin"
+          postfix="#"
+          legend="Sales per week"
           legendText={{
             fontSize: 0.15,
           }}

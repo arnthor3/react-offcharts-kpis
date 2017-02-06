@@ -5,4 +5,5 @@ export const BACKGROUND = `${ARC}-background`;
 export const CENTER_TEXT = `${ARC}-centertext`;
 export const CENTER_ITEM = `${ARC}-centeritem`;
 export const CENTER_TEXT_VALUE = `${ARC}-centertext-value`;
+export const CENTER_TEXT_FRACTION = `${ARC}-centertext-fraction`;
 export const CENTER_TEXT_POSTFIX = `${ARC}-centertext-postfix`;
