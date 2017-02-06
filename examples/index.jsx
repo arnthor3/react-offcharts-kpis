@@ -132,6 +132,7 @@ class Chart2 extends Component {
       >
         <ArcKpi
           responsive
+          decimal
           startAngle={0}
           endAngle={Math.PI * 2}
           animationEase="easeCubicInOut"
@@ -191,8 +192,9 @@ class Chart3 extends Component {
       >
         <HalfArcKpi
           responsive
+          decimal
           animationTime={1500}
-          animationEase="easeBounce"
+          animationEase="easeCubicInOut"
           background={{
             inner: 0.70,
             outer: 0.95,
@@ -201,7 +203,7 @@ class Chart3 extends Component {
           }}
           value={this.state.value}
           postfix="$"
-          legend="Revenue Margin"
+          legend="Revenue Per Day"
           legendText={{
             fontSize: 0.1,
           }}

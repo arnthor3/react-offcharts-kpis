@@ -4,7 +4,6 @@ import ReactIf from 'react-offcharts-core/Components/ReactIf';
 import Gradients from 'react-offcharts-core/Components/Defs/Gradients';
 import guid from 'react-offcharts-core/Utils/guid';
 import HalfArcContainer from './HalfArcContainer';
-import Text from './Text';
 import { textProps, fillAndStroke, dataShape } from '../../Utils/props';
 
 const HalfArcKpi = props => (
@@ -16,6 +15,7 @@ const HalfArcKpi = props => (
     className={props.className}
   >
     <HalfArcContainer
+      decimal={props.decimal}
       legend={props.legend}
       valueText={props.valueText}
       legendText={props.legendText}

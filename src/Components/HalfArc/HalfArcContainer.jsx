@@ -6,6 +6,7 @@ import 'd3-transition';
 import * as ease from 'd3-ease';
 import clone from 'react-offcharts-core/Utils/cloneChildren';
 import * as dim from 'react-offcharts-core/Helpers/arcDimension';
+import { round, splitNumber } from 'react-offcharts-core/Utils/numbers';
 import * as ch from '../../Utils/halfarc_constants';
 import * as arcs from '../../Utils/dimensions';
 import { dataShape, fillAndStroke } from '../../Utils/props';
@@ -19,6 +20,7 @@ export default class HalfArcContainer extends Base {
     animationTime: PropTypes.number,
     value: dataShape,
     background: fillAndStroke,
+    decimal: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -35,12 +37,15 @@ export default class HalfArcContainer extends Base {
     postfixText: {
       fontSize: 0.25,
     },
-
+    fractionText: {
+      fontSize: 0.33,
+    },
   }
 
   animate() {
     const path = select(this.valuePath);
-    const text = select(this.valueText);
+    const valueText = select(this.valueText);
+    const fractionText = select(this.fractionText);
     const e = this.getEase();
     const time = this.getAnimationTime();
     path
@@ -54,8 +59,18 @@ export default class HalfArcContainer extends Base {
         const scale = arcs.getHalfArcScale(this.props);
         const interNum = interpolate(old, this.props.value.value);
         const interValue = interpolate(scale(old), scale(this.props.value.value));
+        if (this.props.decimal) {
+          return (t) => {
+            const value = round(interNum(t));
+            const sp = splitNumber(value, '.');
+
+            valueText.text(sp.number);
+            fractionText.text(`.${sp.fraction}`);
+            return arc.endAngle(interValue(t))();
+          }
+        }
         return (t) => {
-          text.text(Math.floor(interNum(t)));
+          valueText.text(Math.floor(interNum(t)));
           return arc.endAngle(interValue(t))();
         };
       })
@@ -75,6 +90,17 @@ export default class HalfArcContainer extends Base {
 
   renderCenterText() {
     const d = arcs.halfArcDimensions(this.props);
+    let num;
+    let frac;
+
+    if (this.props.decimal) {
+      const value = round(this.props.value.value);
+      const sp = splitNumber(value, '.');
+      num = sp.number;
+      frac = sp.fraction;
+    } else {
+      num = Math.round(this.props.value.value);
+    }
     return (
       <g className={ch.CENTER_ITEM}>
         <text
@@ -86,8 +112,17 @@ export default class HalfArcContainer extends Base {
             fontSize={(d.radius * this.props.valueText.fontSize)}
             ref={(c) => { this.valueText = c; }}
           >
-            {this.props.value.value}
+            {num}
           </tspan>
+          {this.props.decimal ?
+            <tspan
+              className={ch.CENTER_TEXT_FRACTION}
+              fontSize={(d.radius * this.props.fractionText.fontSize)}
+              ref={(c) => { this.fractionText = c; }}
+            >
+              .{frac}
+            </tspan> : null
+          }
           <tspan
             className={ch.CENTER_TEXT_POSTFIX}
             fontSize={(d.radius * this.props.postfixText.fontSize)}
