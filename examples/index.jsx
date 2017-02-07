@@ -23,8 +23,8 @@ const singleValue = {
   value: 50,
   range: [0, 100],
   outer: 0.95,
-  inner: 0.8,
-  fill: '#994',
+  inner: 0.93,
+  fill: '#eee',
   startAngle: -Math.PI / 2,
   endAngle: (Math.PI * 2) - (Math.PI / 2),
 };
@@ -49,8 +49,8 @@ class Chart extends Component {
 
   onClick() {
     const { bench, value } = this.state;
-    const val = parseInt(Math.random() * 100, 10);
-    const val2 = parseInt(Math.random() * 100, 10);
+    const val = Math.random() * 100;
+    const val2 = Math.random() * 100;
     const newBench = Object.assign({}, bench, { value: val });
     const newVal = Object.assign({}, value, { value: val2 });
     this.setState({
@@ -67,6 +67,7 @@ class Chart extends Component {
       >
         <DoubleArcKpi
           responsive
+          decimal
           startAngle={-Math.PI / 2}
           endAngle={Math.PI / 1.33}
           value={this.state.value}
@@ -127,7 +128,7 @@ class Chart2 extends Component {
   render() {
     return (
       <div
-        style={{ width: '40%', height: '400px' }}
+        style={{ width: '40%', height: '400px', background: '#333' }}
         onClick={this.onClick}
       >
         <ArcKpi
@@ -139,25 +140,27 @@ class Chart2 extends Component {
           background={{
             inner: 0,
             outer: 0.95,
-            fill: '#eee',
+            fill: '#000',
           }}
           backgroundValue={{
-            inner: 0.85,
+            inner: 0.93,
             outer: 0.95,
-            fill: '#bbb',
-            stroke: '#999',
+            fill: '#555',
           }}
           value={this.state.value}
-          postfix="#"
+          postfix="Cars"
           legend="Sales per week"
           legendText={{
+            fill: 'white',
             fontSize: 0.15,
           }}
           valueText={{
+            fill: 'white',
             fontSize: 0.65,
           }}
           postfixText={{
-            fontSize: 0.25,
+            fill: 'white',
+            fontSize: 0.15,
           }}
         />
       </div>
@@ -201,7 +204,7 @@ class Chart3 extends Component {
             stroke: '#999',
           }}
           value={this.state.value}
-          postfix="$"
+          postfix="K"
           legend="Revenue Per Day"
           legendText={{
             fontSize: 0.1,

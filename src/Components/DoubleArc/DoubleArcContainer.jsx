@@ -7,6 +7,7 @@ import { arc } from 'd3-shape';
 import * as ease from 'd3-ease';
 import clone from 'react-offcharts-core/Utils/cloneChildren';
 import * as dim from 'react-offcharts-core/Helpers/arcDimension';
+import { round, splitNumber } from 'react-offcharts-core/Utils/numbers';
 import * as ch from '../../Utils/doublearc_constants';
 import * as arcs from '../../Utils/dimensions';
 import Base from '../BaseKpi';
@@ -71,8 +72,19 @@ export default class ArcContainer extends Base {
 
   animateIn() {
     const els = select(this.container);
-    els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}`).text(this.props.value.value);
-    els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}`).text(this.props.benchmark.value);
+    if (this.props.decimal) {
+      const value = round(this.props.value.value);
+      const sp = splitNumber(value, '.');
+      const bench = round(this.props.benchmark.value);
+      const spBench = splitNumber(bench);
+      els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_TOP_FRACTION}`).text(`.${sp.fraction}`);
+      els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_FRACTION}`).text(`.${spBench.fraction}`);
+      els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}`).text(sp.number);
+      els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}`).text(spBench.number);
+    } else {
+      els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_TOP_VALUE}`).text(this.props.value.value);
+      els.select(`.${ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}`).text(this.props.benchmark.value);
+    }
     const centerTextContainer = els.selectAll(`.${ch.DOUBLE_ARC_CENTER_ITEM}`);
     centerTextContainer
       .transition()

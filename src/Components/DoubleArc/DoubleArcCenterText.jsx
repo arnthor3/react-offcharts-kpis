@@ -43,6 +43,13 @@ const DoubleArcCenterText = (props) => {
           radius={props.radius}
           tProps={props.topValueText}
         />
+        {props.decimal ?
+          <Tspan
+            className={ch.DOUBLE_ARC_CENTER_TEXT_TOP_FRACTION}
+            radius={props.radius}
+            tProps={props.topFractionText}
+          /> : null
+        }
         <Tspan
           className={ch.DOUBLE_ARC_CENTER_TEXT_TOP_POSTFIX}
           text={props.topPostfix}
@@ -71,6 +78,13 @@ const DoubleArcCenterText = (props) => {
             tProps={props.bottomValueText}
             className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_VALUE}
           />
+          {props.decimal ?
+            <Tspan
+              radius={props.radius}
+              tProps={props.bottomFractionText}
+              className={ch.DOUBLE_ARC_CENTER_TEXT_BOTTOM_FRACTION}
+            /> : null
+          }
           <Tspan
             text={props.bottomPostfix}
             radius={props.radius}
@@ -90,13 +104,19 @@ DoubleArcCenterText.propTypes = {
   bottomPostfixText: textProps,
   radius: PropTypes.number,
   topPostfix: PropTypes.string,
+  topFractionText: textProps,
+  bottomFractionText: textProps,
   bottomPostfix: PropTypes.string,
   seperator: fillAndStroke,
+  decimal: PropTypes.bool,
 };
 
 DoubleArcCenterText.defaultProps = {
   topValueText: {
     fontSize: 0.6,
+  },
+  topFractionText: {
+    fontSize: 0.45,
   },
   topPostfixText: {
     fontSize: 0.3,
@@ -104,9 +124,13 @@ DoubleArcCenterText.defaultProps = {
   bottomValueText: {
     fontSize: 0.3,
   },
+  bottomFractionText: {
+    fontSize: 0.225,
+  },
   bottomPostfixText: {
     fontSize: 0.15,
   },
+
 };
 
 

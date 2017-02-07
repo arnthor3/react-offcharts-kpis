@@ -67,7 +67,7 @@ export default class HalfArcContainer extends Base {
             valueText.text(sp.number);
             fractionText.text(`.${sp.fraction}`);
             return arc.endAngle(interValue(t))();
-          }
+          };
         }
         return (t) => {
           valueText.text(Math.floor(interNum(t)));

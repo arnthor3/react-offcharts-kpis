@@ -50,6 +50,7 @@ HalfArcKpi.propTypes = {
   valueText: textProps,
   legend: PropTypes.string,
   legendText: textProps,
+  decimal: PropTypes.bool,
 };
 
 export default HalfArcKpi;

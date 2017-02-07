@@ -17,6 +17,7 @@ const DoubleArcKpi = props => (
     className={props.className}
   >
     <DoubleArcContainer
+      decimal={props.decimal}
       animationTime={props.animationTime}
       animationEase={props.animationEase}
       value={props.value}
@@ -64,6 +65,7 @@ DoubleArcKpi.propTypes = {
   backgroundBenchmark: fillAndStroke,
   startAngle: PropTypes.number,
   endAngle: PropTypes.number,
+  decimal: PropTypes.bool,
 };
 
 export default DoubleArcKpi;

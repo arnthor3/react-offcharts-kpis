@@ -27,7 +27,6 @@ Tspan.propTypes = {
   tProps: textProps,
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   className: PropTypes.string,
-  decimal: PropTypes.bool,
 };
 
 
@@ -74,6 +73,7 @@ const CenterText = (props) => {
           transform="scale(0)"
           className={`${ch.CENTER_ITEM} ${ch.CENTER_LEGEND}`}
           textAnchor="middle"
+          fill={props.legendText.fill}
           fontSize={props.legendText.fontSize * props.radius}
         >{props.legend}</text>
       </g>

@@ -107,7 +107,7 @@ height|number|*null*|The width of the chart, used if responsive is false
 responsive|bool|*true*|If set to true then the element will fill out into parent container, and resize on window dimension change
 id|string|*null*|Sets the id for the Component
 className|string|*null*|Sets the class for the component
-
+decimal|bool|*null*|If set then show decimals
 ### Props DoubleArcKpi
 Name|Type|Default|Description|
 ---|---|---|---
@@ -120,6 +120,7 @@ endAngle|number|*null*|End angle
 backgroundBenchmark|shape|*null*| The fill and stroke of the background benchmark
 backgroundValue|shape|*null*|The fill and stroke of the background value
 topValueText|TextShape|*null*|text props for the top value text
+topFractionText|TextShape|*null*|text props for the top fraction text
 topPostfixText|TextShape|*null*|Sets the class for the component
 bottomValueText|TextShape|*null*|Sets the id for the Component
 bottomPostfixText|TextShape|*null*|Sets the class for the component
@@ -138,12 +139,14 @@ startAngle|number|*null*|Start angle
 endAngle|number|*null*|End angle
 backgroundValue|shape|*null*|The fill and stroke of the background value
 background|shape|*null*| The shape of the fill, stroke and shape of the background
-valueText|TextShape|*null*|text props for the top value text
-postfixText|TextShape|*null*|Sets the class for the component
-postfix|string|*null*|Sets the class for the component
-seperator|shape|*null*|Sets the id for the Component
-legendFontsize|number|*null*|Sets the class for the component
+valueText|TextShape|*null*|text props for the value text
+fractionText|TextShape|*null*|text props for the fraction text
+postfixText|TextShape|*null*|Sets the postfix props
+postfix|string|*null*|Sets the the postfix letter
+seperator|shape|*null*|Sets the seperator line shape
+legendText|TextShape|*null*|Sets the text props for the legendText
 
+The only difference in value in ArcKpi is that you need to set the startAngle and endAngle props in that object too.
 
 #### The Datahape Prop
 
