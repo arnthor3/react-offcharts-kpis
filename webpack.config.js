@@ -1,26 +1,29 @@
 const path =  require('path');
 const webpack = require('webpack');
 
-const env = process.env.WEBPACK_ENV;
-const BUILD = 'build';
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: './examples/index.jsx',
+  entry: ['react-hot-loader/patch', './examples/index.jsx'],
   output: {
+    publicPath: path.resolve(process.cwd(), 'dist'),
     path: __dirname,
     filename: './index.js',
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
+    modules: [
+      'node_modules',
+    ],
   },
   module: {
-    preLoaders: [{
+    rules: [{
+      enforce: 'pre',
       test: /\.jsx?$/,
-      loaders: ['eslint'],
+      loaders: 'eslint-loader',
       exclude: '/node_modules/',
-    }],
-    loaders: [{
+    },
+    {
       test: /.jsx?$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
